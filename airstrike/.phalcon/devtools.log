@@ -1,0 +1,2 @@
+Sun 27 04:05:43 Jaime php: [WARNING] Unable to initialize Volt cache dir: C:\WINDOWS\TEMP\phalcon\volt. Used temp path: C:\WINDOWS\TEMP\phalcon\volt
+Sun 27 04:18:02 Jaime php: [ERROR] 1049: SQLSTATE[HY000] [1049] Unknown database 'test' in C:\phalcon-tools\scripts\Phalcon\Initializable.php on line 562
