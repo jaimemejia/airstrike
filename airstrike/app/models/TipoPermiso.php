@@ -85,4 +85,18 @@ class TipoPermiso extends \Phalcon\Mvc\Model
       return new Resultset(null, $tipoPermiso, $tipoPermiso->getReadConnection()->query($sql));
     }
 
+    public static function updateTipoPermiso($id, $tipoPermiso )
+    {
+      $sql = "SELECT * FROM update_tipo_permiso('$id','$tipoPermiso->nombre')";
+      $tipoPermiso = new TipoPermiso();
+      return new Resultset(null, $tipoPermiso, $tipoPermiso->getReadConnection()->query($sql));
+    }
+
+    public static function deleteTipoPermiso($id)
+    {
+      $sql = "SELECT * FROM delete_tipo_permiso('$id')";
+      $tipoPermiso = new TipoPermiso();
+      return new Resultset(null, $tipoPermiso, $tipoPermiso->getReadConnection()->query($sql));
+    }
+
 }

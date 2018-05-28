@@ -42,13 +42,19 @@ $app->get('/api/tipopermiso/{id:[0-9]+}', function($id) use ($app){
 });
 
 $app->post('/api/tipopermiso', function() use ($app){
+    $tipoPermiso=$app->request->getJsonRawBody();
+    TipoPermiso::addTipoPermiso($tipoPermiso);
+});
 
-    $request = new Phalcon\Http\Request();
-    $json= $request->getJsonRawBody();
-    var_dump($json->nombre);
+$app->put('/api/tipopermiso/{id:[0-9]+}', function($id) use ($app){
+    $tipoPermiso=$app->request->getJsonRawBody();
+    var_dump($tipoPermiso);
+    TipoPermiso::updateTipoPermiso($id, $tipoPermiso);
+});
 
+$app->delete('/api/tipopermiso/{id:[0-9]+}', function($id) use ($app){
 
-  /*TipoPermiso::addTipoPermiso($tipoPermiso);*/
+    TipoPermiso::deleteTipoPermiso($id);
 });
 /**
  *Fin de rutas para TipoPermiso
