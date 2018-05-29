@@ -1,5 +1,8 @@
 <?php
 
+use Phalcon\Mvc\Model;
+use Phalcon\Mvc\Model\Resultset\Simple as Resultset;
+
 class Menu extends \Phalcon\Mvc\Model
 {
 
@@ -15,13 +18,6 @@ class Menu extends \Phalcon\Mvc\Model
     /**
      *
      * @var integer
-     * @Column(column="nombre", type="integer", length=32, nullable=false)
-     */
-    public $nombre;
-
-    /**
-     *
-     * @var integer
      * @Column(column="menu_superior_id", type="integer", length=32, nullable=true)
      */
     public $menu_superior_id;
@@ -32,6 +28,13 @@ class Menu extends \Phalcon\Mvc\Model
      * @Column(column="estado", type="integer", length=32, nullable=false)
      */
     public $estado;
+
+    /**
+     *
+     * @var string
+     * @Column(column="nombre", type="string", length=50, nullable=false)
+     */
+    public $nombre;
 
     /**
      * Initialize method for model.
@@ -76,5 +79,41 @@ class Menu extends \Phalcon\Mvc\Model
     {
         return parent::findFirst($parameters);
     }
+
+    public static function getAll()
+    {
+      $sql = "SELECT * FROM get_menu()";
+      $menu = new Menu();
+      return new Resultset(null, $menu, $menu->getReadConnection()->query($sql));
+    }
+
+    public static function getById($id)
+    {
+      $sql = "SELECT * FROM get_menu('$id')";
+      $menu = new Menu();
+      return new Resultset(null, $menu, $menu->getReadConnection()->query($sql));
+    }
+
+    public static function addMenu($menu)
+    {
+      $sql = "SELECT * FROM create_menu('$menu->nombre','$menu->menu_superior_id',)";
+      $menu = new Menu();
+      return new Resultset(null, $menu, $menu->getReadConnection()->query($sql));
+    }
+/*
+    public static function updateMenu($id, $menu )
+    {
+      $sql = "SELECT * FROM update_menu('$id','$menu->nombre')";
+      $menu = new Menu();
+      return new Resultset(null, $menu, $menu->getReadConnection()->query($sql));
+    }
+*/
+    public static function deleteMenu($id)
+    {
+      $sql = "SELECT * FROM delete_menu('$id')";
+      $menu = new Menu();
+      return new Resultset(null, $menu, $menu->getReadConnection()->query($sql));
+    }
+
 
 }
