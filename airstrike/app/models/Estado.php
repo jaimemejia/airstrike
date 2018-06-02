@@ -1,5 +1,8 @@
 <?php
 
+use Phalcon\Mvc\Model;
+use Phalcon\Mvc\Model\Resultset\Simple as Resultset;
+
 class Estado extends \Phalcon\Mvc\Model
 {
 
@@ -61,4 +64,38 @@ class Estado extends \Phalcon\Mvc\Model
         return parent::findFirst($parameters);
     }
 
+    public static function getAll()
+    {
+      $sql = "SELECT * FROM get_estado()";
+      $estado = new Estado();
+      return new Resultset(null, $estado, $estado->getReadConnection()->query($sql));
+    }
+
+    public static function getById($id)
+    {
+      $sql = "SELECT * FROM get_estado('$id')";
+      $estado = new Estado();
+      return new Resultset(null, $estado, $estado->getReadConnection()->query($sql));
+    }
+
+    public static function addEstado($estado)
+    {
+      $sql = "SELECT * FROM create_estado('$estado->nombre')";
+      $estado = new Estado();
+      return new Resultset(null, $estado, $estado->getReadConnection()->query($sql));
+    }
+
+    public static function updateEstado($id, $estado )
+    {
+      $sql = "SELECT * FROM update_estado('$id','$estado->nombre')";
+      $estado = new Estado();
+      return new Resultset(null, $estado, $estado->getReadConnection()->query($sql));
+    }
+
+    public static function deleteEstado($id)
+    {
+      $sql = "SELECT * FROM delete_estado('$id')";
+      $estado = new Estado();
+      return new Resultset(null, $estado, $estado->getReadConnection()->query($sql));
+    }
 }
