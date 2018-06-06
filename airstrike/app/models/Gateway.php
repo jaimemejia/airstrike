@@ -1,5 +1,8 @@
 <?php
 
+use Phalcon\Mvc\Model;
+use Phalcon\Mvc\Model\Resultset\Simple as Resultset;
+
 class Gateway extends \Phalcon\Mvc\Model
 {
 
@@ -69,5 +72,45 @@ class Gateway extends \Phalcon\Mvc\Model
     {
         return parent::findFirst($parameters);
     }
+	
+	/*OBTENER TODOS LOS GATEWAY*/
+	public static function getAll()
+    {
+      $sql = "SELECT * FROM select_gateway()";
+      $gateway = new Gateway();
+      return new Resultset(null, $gateway, $gateway->getReadConnection()->query($sql));
+    }
+	
+	/*OBTENER GATEWAY POR ID*/
+	public static function getById($id)
+    {
+      $sql = "SELECT * FROM select_gateway_id('$id')";
+      $gateway = new Gateway();
+      return new Resultset(null, $gateway, $gateway->getReadConnection()->query($sql));
+    }
+	
+	/*CREAR UN NUEVO GATEWAY*/
+	public static function addGateway($gateway)
+    {
+      $sql = "SELECT * FROM create_gateway('$gateway->id_horario','$gateway->aeropuerto_codigo')";
+      $gateway = new Gateway();
+      return new Resultset(null, $gateway, $gateway->getReadConnection()->query($sql));
+    }
 
+	/*ACTUALIZAR GATEWAY*/ 
+	public static function updateGateway($id,$gateway)
+	{
+	  $sql = "SELECT * FROM update_gateway('$id','$gateway->id_horario','$gateway->aeropuerto_codigo')";
+	  $gateway = new Gateway();
+	  return new Resultset(null, $gateway, $gateway->getReadConnection()->query($sql));
+	}
+	
+	/*ELIMINAR GATEWAY*/
+	public static function deleteGateway($id)
+    {
+      $sql = "SELECT * FROM delete_gateway('$id')";
+      $gateway = new Gateway();
+      return new Resultset(null, $gateway, $gateway->getReadConnection()->query($sql));
+    }
+	
 }

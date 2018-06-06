@@ -1,5 +1,8 @@
 <?php
 
+use Phalcon\Mvc\Model;
+use Phalcon\Mvc\Model\Resultset\Simple as Resultset;
+
 class LineaAerea extends \Phalcon\Mvc\Model
 {
 
@@ -104,6 +107,46 @@ class LineaAerea extends \Phalcon\Mvc\Model
     public static function findFirst($parameters = null)
     {
         return parent::findFirst($parameters);
+    }
+	
+	/*OBTENER TODAS LAS LINEAS AEREAS*/
+	public static function getAll()
+    {
+      $sql = "SELECT * FROM select_linea_aerea()";
+      $lineaAerea = new LineaAerea();
+      return new Resultset(null, $lineaAerea, $lineaAerea->getReadConnection()->query($sql));
+    }
+	
+	/*OBTENER LINEA AEREA POR CODIGO*/
+	public static function getByCodigo($codigo)
+    {
+      $sql = "SELECT * FROM select_linea_aerea_id('$codigo')";
+      $lineaAerea = new LineaAerea();
+      return new Resultset(null, $lineaAerea, $lineaAerea->getReadConnection()->query($sql));
+    }
+	
+	/*CREAR UNA NUEVA LINEA AEREA*/
+	public static function addLineaAerea($lineaAerea)
+    {
+      $sql = "SELECT * FROM create_linea_aerea('$lineaAerea->nombre_oficial','$lineaAerea->nombre_corto','$lineaAerea->representante','$lineaAerea->fecha_fundacion','$lineaAerea->pais_codigo','$lineaAerea->correo_electronico','$lineaAerea->pagina_web')";
+      $lineaAerea = new LineaAerea();
+      return new Resultset(null, $lineaAerea, $lineaAerea->getReadConnection()->query($sql));
+    }
+
+	/*ACTUALIZAR LINEA AEREA*/ 
+	public static function updateLineaAerea($codigo,$lineaAerea)
+	{
+	  $sql = "SELECT * FROM update_linea_aerea('$codigo','$lineaAerea->nombre_oficial','$lineaAerea->nombre_corto','$lineaAerea->representante','$lineaAerea->fecha_fundacion','$lineaAerea->pais_codigo','$lineaAerea->correo_electronico','$lineaAerea->pagina_web')";
+	  $lineaAerea = new LineaAerea();
+	  return new Resultset(null, $lineaAerea, $lineaAerea->getReadConnection()->query($sql));
+	}
+	
+	/*ELIMINAR LINEA AEREA*/
+	public static function deleteLineaAerea($codigo)
+    {
+      $sql = "SELECT * FROM delete_linea_aerea('$codigo')";
+      $lineaAerea = new LineaAerea();
+      return new Resultset(null, $lineaAerea, $lineaAerea->getReadConnection()->query($sql));
     }
 
 }

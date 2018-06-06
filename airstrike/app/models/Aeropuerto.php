@@ -1,5 +1,8 @@
 <?php
 
+use Phalcon\Mvc\Model;
+use Phalcon\Mvc\Model\Resultset\Simple as Resultset;
+
 class Aeropuerto extends \Phalcon\Mvc\Model
 {
 
@@ -80,6 +83,46 @@ class Aeropuerto extends \Phalcon\Mvc\Model
     public static function findFirst($parameters = null)
     {
         return parent::findFirst($parameters);
+    }
+
+	/*OBTENER TODOS LOS AEROPUERTOS*/
+	public static function getAll()
+    {
+      $sql = "SELECT * FROM select_aeropuerto()";
+      $aeropuerto = new Aeropuerto();
+      return new Resultset(null, $aeropuerto, $aeropuerto->getReadConnection()->query($sql));
+    }
+	
+	/*OBTENER AEROPUERTO POR CODIGO*/
+	public static function getByCodigo($codigo)
+    {
+      $sql = "SELECT * FROM select_aeropuerto_id('$codigo')";
+      $aeropuerto = new Aeropuerto();
+      return new Resultset(null, $aeropuerto, $aeropuerto->getReadConnection()->query($sql));
+    }
+	
+	/*CREAR UN NUEVO AEROPUERTO*/
+	public static function addAeropuerto($aeropuerto)
+    {
+      $sql = "SELECT * FROM create_aeropuerto('$aeropuerto->codigo','$aeropuerto->nombre','$aeropuerto->telefono','$aeropuerto->bahias','$aeropuerto->ciudad_codigo')";
+      $aeropuerto = new Aeropuerto();
+      return new Resultset(null, $aeropuerto, $aeropuerto->getReadConnection()->query($sql));
+    }
+
+	/*ACTUALIZAR AEROPUERTO*/ 
+	public static function updateAeropuerto($codigo,$aeropuerto)
+	{
+	  $sql = "SELECT * FROM update_aeropuerto('$codigo','$codigo','$aeropuerto->nombre','$aeropuerto->telefono','$aeropuerto->bahias','$aeropuerto->ciudad_codigo')";
+	  $aeropuerto = new Aeropuerto();
+	  return new Resultset(null, $aeropuerto, $aeropuerto->getReadConnection()->query($sql));
+	}
+	
+	/*ELIMINAR AEROPUERTO*/
+	public static function deleteAeropuerto($codigo)
+    {
+      $sql = "SELECT * FROM delete_aeropuerto('$codigo')";
+      $aeropuerto = new Aeropuerto();
+      return new Resultset(null, $aeropuerto, $aeropuerto->getReadConnection()->query($sql));
     }
 
 }

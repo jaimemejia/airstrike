@@ -1,5 +1,8 @@
 <?php
 
+use Phalcon\Mvc\Model;
+use Phalcon\Mvc\Model\Resultset\Simple as Resultset;
+
 class Ciudad extends \Phalcon\Mvc\Model
 {
 
@@ -70,6 +73,46 @@ class Ciudad extends \Phalcon\Mvc\Model
     public static function findFirst($parameters = null)
     {
         return parent::findFirst($parameters);
+    }
+	
+	/*OBTENER TODAS LAS CIUDADES*/
+	public static function getAll()
+    {
+      $sql = "SELECT * FROM select_ciudad()";
+      $ciudad = new Ciudad();
+      return new Resultset(null, $ciudad, $ciudad->getReadConnection()->query($sql));
+    }
+	
+	/*OBTENER CIUDAD POR CODIGO*/
+	public static function getByCodigo($codigo)
+    {
+      $sql = "SELECT * FROM select_ciudad_id('$codigo')";
+      $ciudad = new Ciudad();
+      return new Resultset(null, $ciudad, $ciudad->getReadConnection()->query($sql));
+    }
+	
+	/*CREAR UNA NUEVA CIUDAD*/
+	public static function addCiudad($ciudad)
+    {
+      $sql = "SELECT * FROM create_ciudad('$ciudad->nombre','$ciudad->pais_codigo')";
+      $ciudad = new Ciudad();
+      return new Resultset(null, $ciudad, $ciudad->getReadConnection()->query($sql));
+    }
+
+	/*ACTUALIZAR CIUDAD*/ 
+	public static function updateCiudad($codigo,$ciudad)
+	{
+	  $sql = "SELECT * FROM update_ciudad('$codigo','$ciudad->nombre','$ciudad->pais_codigo')";
+	  $ciudad = new Ciudad();
+	  return new Resultset(null, $ciudad, $ciudad->getReadConnection()->query($sql));
+	}
+	
+	/*ELIMINAR CIUDAD*/
+	public static function deleteCiudad($codigo)
+    {
+      $sql = "SELECT * FROM delete_ciudad('$codigo')";
+      $ciudad = new Ciudad();
+      return new Resultset(null, $ciudad, $ciudad->getReadConnection()->query($sql));
     }
 
 }
