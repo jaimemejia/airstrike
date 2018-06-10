@@ -1,4 +1,6 @@
 <?php
+use Phalcon\Mvc\Model;
+use Phalcon\Mvc\Model\Resultset\Simple as Resultset;
 
 class Permiso extends \Phalcon\Mvc\Model
 {
@@ -89,6 +91,41 @@ class Permiso extends \Phalcon\Mvc\Model
     public static function findFirst($parameters = null)
     {
         return parent::findFirst($parameters);
+    }
+
+    public static function getAll()
+    {
+      $sql = "SELECT * FROM get_permiso()";
+      $permiso = new Permiso();
+      return new Resultset(null, $permiso, $permiso->getReadConnection()->query($sql));
+    }
+
+    public static function getById($id)
+    {
+      $sql = "SELECT * FROM get_permiso('$id')";
+      $permiso = new Permiso();
+      return new Resultset(null, $permiso, $permiso->getReadConnection()->query($sql));
+    }
+
+    public static function addPermiso($permiso)
+    {
+      $sql = "SELECT * FROM create_permiso('$permiso->tipo','$permiso->nombre')";
+      $permiso = new Permiso();
+      return new Resultset(null, $permiso, $permiso->getReadConnection()->query($sql));
+    }
+/*
+    public static function updatePermiso($id, $permiso )
+    {
+      $sql = "SELECT * FROM update_permiso('$id','$permiso->nombre')";
+      $permiso = new Permiso();
+      return new Resultset(null, $permiso, $permiso->getReadConnection()->query($sql));
+    }
+*/
+    public static function deletePermiso($id)
+    {
+      $sql = "SELECT * FROM delete_permiso('$id')";
+      $permiso = new Permiso();
+      return new Resultset(null, $permiso, $permiso->getReadConnection()->query($sql));
     }
 
 }

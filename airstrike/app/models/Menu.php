@@ -96,7 +96,7 @@ class Menu extends \Phalcon\Mvc\Model
 
     public static function addMenu($menu)
     {
-      $sql = "SELECT * FROM create_menu('$menu->nombre','$menu->menu_superior_id',)";
+      $sql = "SELECT * FROM create_menu('$menu->nombre',$menu->estado,'$menu->menu_superior_id')";
       $menu = new Menu();
       return new Resultset(null, $menu, $menu->getReadConnection()->query($sql));
     }

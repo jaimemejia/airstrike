@@ -1,5 +1,8 @@
 <?php
 
+use Phalcon\Mvc\Model;
+use Phalcon\Mvc\Model\Resultset\Simple as Resultset;
+
 class Rol extends \Phalcon\Mvc\Model
 {
 
@@ -67,6 +70,41 @@ class Rol extends \Phalcon\Mvc\Model
     public static function findFirst($parameters = null)
     {
         return parent::findFirst($parameters);
+    }
+
+    public static function getAll()
+    {
+      $sql = "SELECT * FROM get_rol()";
+      $rol = new Rol();
+      return new Resultset(null, $rol, $rol->getReadConnection()->query($sql));
+    }
+
+    public static function getById($id)
+    {
+      $sql = "SELECT * FROM get_rol('$id')";
+      $rol = new Rol();
+      return new Resultset(null, $rol, $rol->getReadConnection()->query($sql));
+    }
+
+    public static function addRol($rol)
+    {
+      $sql = "SELECT * FROM create_rol('$rol->tipo','$rol->nombre')";
+      $rol = new Rol();
+      return new Resultset(null, $rol, $rol->getReadConnection()->query($sql));
+    }
+/*
+    public static function updateRol($id, $rol )
+    {
+      $sql = "SELECT * FROM update_rol('$id','$rol->nombre')";
+      $rol = new Rol();
+      return new Resultset(null, $rol, $rol->getReadConnection()->query($sql));
+    }
+*/
+    public static function deleteRol($id)
+    {
+      $sql = "SELECT * FROM delete_rol('$id')";
+      $rol = new Rol();
+      return new Resultset(null, $rol, $rol->getReadConnection()->query($sql));
     }
 
 }
