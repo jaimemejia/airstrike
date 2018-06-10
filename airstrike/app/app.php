@@ -16,3 +16,9 @@ $app->notFound(function () use($app) {
 $app->get('/', function () {
     echo $this['view']->render('index');
 });
+
+foreach (glob("apps/*.php") as $file ) {
+}
+
+include 'apps/TipoPermisoApp.php';
+include 'apps/TipoPermisoApp.php';
