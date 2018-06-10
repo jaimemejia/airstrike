@@ -17,8 +17,16 @@ $app->get('/', function () {
     echo $this['view']->render('index');
 });
 
-foreach (glob("apps/*.php") as $file ) {
-}
 
-include 'apps/TipoPermisoApp.php';
+include 'apps/AeropuertoApp.php';
+include 'apps/CiudadApp.php';
+include 'apps/ContactoApp.php';
+include 'apps/EstadoApp.php';
+include 'apps/GatewayApp.php';
+include 'apps/HorarioApp.php';
+include 'apps/LineaAreaApp.php';
+include 'apps/MenuApp.php';
+include 'apps/PaisApp.php';
+include 'apps/PermisoApp.php';
+include 'apps/RolApp.php';
 include 'apps/TipoPermisoApp.php';
