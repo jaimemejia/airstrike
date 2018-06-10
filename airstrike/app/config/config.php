@@ -11,7 +11,7 @@ return new \Phalcon\Config([
         'adapter'    => 'Postgresql',
         'host'       => 'tantor.db.elephantsql.com',
         'username'   => 'fvtvqiyk',
-        'password'   => 'cYnq9gcf1Ktm9IDbifW_44dk4yCWtemB',
+        'password'   => '',
         'dbname'     => 'fvtvqiyk',
     ],
 
