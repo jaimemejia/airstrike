@@ -30,9 +30,6 @@ include 'apps/PaisApp.php';
 include 'apps/PermisoApp.php';
 include 'apps/RolApp.php';
 include 'apps/TipoPermisoApp.php';
-<<<<<<< HEAD
 include 'apps/VueloApp.php';
 include 'apps/ProgramacionVueloApp.php';
-=======
 include 'apps/UsuarioApp.php';
->>>>>>> cd50926fab22425e1e8c823226b41328904e3b38
