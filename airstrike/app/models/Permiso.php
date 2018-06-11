@@ -109,18 +109,18 @@ class Permiso extends \Phalcon\Mvc\Model
 
     public static function addPermiso($permiso)
     {
-      $sql = "SELECT * FROM create_permiso('$permiso->tipo','$permiso->nombre')";
+      $sql = "SELECT * FROM create_permiso('$permiso->nombre','$permiso->estado','$permiso->menu_id','$permiso->tipo_permiso','$permiso->rol_tipo')";
       $permiso = new Permiso();
       return new Resultset(null, $permiso, $permiso->getReadConnection()->query($sql));
     }
-/*
+
     public static function updatePermiso($id, $permiso )
     {
-      $sql = "SELECT * FROM update_permiso('$id','$permiso->nombre')";
+      $sql = "SELECT * FROM update_permiso('$id','$permiso->nombre','$permiso->estado','$permiso->menu_id','$permiso->tipo_permiso','$permiso->rol_tipo')";
       $permiso = new Permiso();
       return new Resultset(null, $permiso, $permiso->getReadConnection()->query($sql));
     }
-*/
+
     public static function deletePermiso($id)
     {
       $sql = "SELECT * FROM delete_permiso('$id')";

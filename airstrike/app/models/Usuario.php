@@ -1,4 +1,6 @@
 <?php
+use Phalcon\Mvc\Model;
+use Phalcon\Mvc\Model\Resultset\Simple as Resultset;
 
 class Usuario extends \Phalcon\Mvc\Model
 {
@@ -75,6 +77,43 @@ class Usuario extends \Phalcon\Mvc\Model
     public static function findFirst($parameters = null)
     {
         return parent::findFirst($parameters);
+    }
+
+    public static function getAll()
+    {
+      $sql = "SELECT * FROM get_usuario()";
+      $usuario = new Usuario();
+      return new Resultset(null, $usuario, $usuario->getReadConnection()->query($sql));
+    }
+
+    public static function getById($id_usuario)
+    {
+      $sql = "SELECT * FROM get_usuario('$id_usuario')";
+      $usuario = new Usuario();
+      return new Resultset(null, $usuario, $usuario->getReadConnection()->query($sql));
+    }
+
+    public static function addUsuario($usuario)
+    {
+      $sql = "SELECT * FROM create_usuario('$usuario->id_rol','$usuario->id_estado','$usuario->millas','$usuario->username','$usuario->password')";
+      $usuario = new Usuario();
+      return new Resultset(null, $usuario, $usuario->getReadConnection()->query($sql));
+    }
+
+    public static function updateUsuario($id_usuario, $usuario )
+    {
+
+      $sql = "SELECT * FROM update_usuario('$id_usuario','$usuario->id_rol','$usuario->id_estado','$usuario->millas','$usuario->username','$usuario->password')";
+
+      $usuario = new Usuario();
+      return new Resultset(null, $usuario, $usuario->getReadConnection()->query($sql));
+    }
+
+    public static function deleteUsuario($id_usuario)
+    {
+      $sql = "SELECT * FROM delete_usuario('$id_usuario')";
+      $usuario = new Usuario();
+      return new Resultset(null, $usuario, $usuario->getReadConnection()->query($sql));
     }
 
 }

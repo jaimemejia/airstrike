@@ -92,14 +92,24 @@ class Rol extends \Phalcon\Mvc\Model
       $rol = new Rol();
       return new Resultset(null, $rol, $rol->getReadConnection()->query($sql));
     }
-/*
+
     public static function updateRol($id, $rol )
     {
-      $sql = "SELECT * FROM update_rol('$id','$rol->nombre')";
+      if(empty($rol->tipo))
+      {
+        $sql = "SELECT * FROM update_rol('$id',null,'$rol->nombre')";
+      }
+      elseif (empty($rol->nombre)) {
+        $sql = "SELECT * FROM update_rol('$id','$rol->tipo',null)";
+      }
+      else {
+        $sql = "SELECT * FROM update_rol('$id','$rol->tipo','$rol->nombre')";
+      }
+
       $rol = new Rol();
       return new Resultset(null, $rol, $rol->getReadConnection()->query($sql));
     }
-*/
+
     public static function deleteRol($id)
     {
       $sql = "SELECT * FROM delete_rol('$id')";

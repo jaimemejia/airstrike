@@ -96,18 +96,23 @@ class Menu extends \Phalcon\Mvc\Model
 
     public static function addMenu($menu)
     {
-      $sql = "SELECT * FROM create_menu('$menu->nombre',$menu->estado,'$menu->menu_superior_id')";
+      if(empty($menu->menu_superior_id)){
+        $sql = "SELECT * FROM create_menu('$menu->nombre','$menu->estado',null)";
+      }
+      else{
+        $sql = "SELECT * FROM create_menu('$menu->nombre','$menu->estado','$menu->menu_superior_id')";
+      }
       $menu = new Menu();
       return new Resultset(null, $menu, $menu->getReadConnection()->query($sql));
     }
-/*
+
     public static function updateMenu($id, $menu )
     {
-      $sql = "SELECT * FROM update_menu('$id','$menu->nombre')";
+      $sql = "SELECT * FROM update_menu('$menu->id','$menu->nombre','$menu->estado','$menu->menu_superior_id')";
       $menu = new Menu();
       return new Resultset(null, $menu, $menu->getReadConnection()->query($sql));
     }
-*/
+
     public static function deleteMenu($id)
     {
       $sql = "SELECT * FROM delete_menu('$id')";
