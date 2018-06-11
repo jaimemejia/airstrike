@@ -35,13 +35,13 @@
          $rol=$app->request->getJsonRawBody();
          Rol::addRol($rol);
      });
-   /*
-     $app->put('/api/tipopermiso/{id:[0-9]+}', function($id) use ($app){
-         $tipoPermiso=$app->request->getJsonRawBody();
-         var_dump($tipoPermiso);
-         TipoPermiso::updateTipoPermiso($id, $tipoPermiso);
+   
+     $app->put('/api/rol/{id:[0-9]+}', function($id) use ($app){
+         $rol=$app->request->getJsonRawBody();
+         var_dump($rol);
+         Permiso::updatePermiso($id, $rol);
      });
-   */
+
      $app->delete('/api/rol/{id:[0-9]+}', function($id) use ($app){
 
          Rol::deleteRol($id);

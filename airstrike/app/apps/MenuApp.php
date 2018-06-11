@@ -10,7 +10,7 @@
      foreach ($menus as $menu){
        $data[]=array(
          'id' => $menu->id,
-         'menu-superior-id' => $menu->menu_superior_id,
+         'menu_superior_id' => $menu->menu_superior_id,
          'estado' => $menu->estado,
          'nombre' => $menu->nombre,
        );
@@ -25,7 +25,7 @@
      foreach ($menus as $menu){
        $data[]=array(
          'id' => $menu->id,
-         'menu-superior-id' => $menu->menu_superior_id,
+         'menu_superior_id' => $menu->menu_superior_id,
          'estado' => $menu->estado,
          'nombre' => $menu->nombre,
        );
@@ -36,6 +36,13 @@
  $app->post('/api/menu', function() use ($app){
      $menu=$app->request->getJsonRawBody();
      Menu::addMenu($menu);
+ });
+
+ $app->put('/api/menu/{id:[0-9]+}', function($id) use ($app)
+ {
+ 	  $menu=$app->request->getJsonRawBody();
+ 	  var_dump($menu);
+ 	  Menu::updateMenu($id, $menu);
  });
 
  $app->delete('/api/menu/{id:[0-9]+}', function($id) use ($app){

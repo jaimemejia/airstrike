@@ -41,13 +41,13 @@
         $permiso=$app->request->getJsonRawBody();
         Permiso::addPermiso($permiso);
     });
-  /*
-    $app->put('/api/tipopermiso/{id:[0-9]+}', function($id) use ($app){
-        $tipoPermiso=$app->request->getJsonRawBody();
-        var_dump($tipoPermiso);
-        TipoPermiso::updateTipoPermiso($id, $tipoPermiso);
+
+    $app->put('/api/permiso/{id:[0-9]+}', function($id) use ($app){
+        $permiso=$app->request->getJsonRawBody();
+        var_dump($permiso);
+        Permiso::updatePermiso($id, $permiso);
     });
-  */
+
     $app->delete('/api/permiso/{id:[0-9]+}', function($id) use ($app){
 
         Permiso::deletePermiso($id);
