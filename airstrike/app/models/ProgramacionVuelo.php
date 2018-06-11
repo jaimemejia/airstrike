@@ -1,5 +1,6 @@
 <?php
-
+use Phalcon\Mvc\Model;
+use Phalcon\Mvc\Model\Resultset\Simple as Resultset;
 class ProgramacionVuelo extends \Phalcon\Mvc\Model
 {
 
@@ -84,6 +85,47 @@ class ProgramacionVuelo extends \Phalcon\Mvc\Model
     public static function findFirst($parameters = null)
     {
         return parent::findFirst($parameters);
+    }
+	
+	
+	/*OBTENER TODAS LAS PROGRAMACIONES*/
+	public static function getAll()
+    {
+      $sql = "SELECT * FROM select_programacion_vuelo()";
+      $programacion_vuelo = new ProgramacionVuelo();
+      return new Resultset(null, $programacion_vuelo, $programacion_vuelo->getReadConnection()->query($sql));
+    }
+	
+	/*OBTENER PROGRAMACION POR ID*/
+	public static function getById($id)
+    {
+      $sql = "SELECT * FROM select_programacion_vuelo_id('$id')";
+      $programacion_vuelo = new ProgramacionVuelo();
+      return new Resultset(null, $programacion_vuelo, $programacion_vuelo->getReadConnection()->query($sql));
+    }
+	
+	/*CREAR UNA NUEVA PROGRAMACION*/
+	public static function addProgramacion($programacion_vuelo)
+    {
+      $sql = "SELECT * FROM create_programacion_vuelo('$programacion_vuelo->avion_placa','$programacion_vuelo->gateway_id','$programacion_vuelo->fecha','$programacion_vuelo->vuelo_codigo')";
+      $programacion_vuelo = new ProgramacionVuelo();
+      return new Resultset(null, $programacion_vuelo, $programacion_vuelo->getReadConnection()->query($sql));
+    }
+
+	/*ACTUALIZAR PROGRAMACION*/ 
+	public static function updateProgramacion($id,$programacion_vuelo)
+	{
+	  $sql = "SELECT * FROM update_programacion_vuelo('$id','$programacion_vuelo->avion_placa','$programacion_vuelo->gateway_id','$programacion_vuelo->fecha','$programacion_vuelo->vuelo_codigo')";
+	  $programacion_vuelo = new ProgramacionVuelo();
+	  return new Resultset(null, $programacion_vuelo, $programacion_vuelo->getReadConnection()->query($sql));
+	}
+	
+	/*ELIMINAR PROGRAMACION*/
+	public static function deleteProgramacion($id)
+    {
+      $sql = "SELECT * FROM delete_programacion_vuelo('$id')";
+      $programacion_vuelo = new ProgramacionVuelo();
+      return new Resultset(null, $programacion_vuelo, $programacion_vuelo->getReadConnection()->query($sql));
     }
 
 }

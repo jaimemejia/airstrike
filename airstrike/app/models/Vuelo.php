@@ -1,5 +1,6 @@
 <?php
-
+use Phalcon\Mvc\Model;
+use Phalcon\Mvc\Model\Resultset\Simple as Resultset;
 class Vuelo extends \Phalcon\Mvc\Model
 {
 
@@ -91,4 +92,44 @@ class Vuelo extends \Phalcon\Mvc\Model
         return parent::findFirst($parameters);
     }
 
+	
+	/*OBTENER TODOS LOS VUELOS*/
+	public static function getAll()
+    {
+      $sql = "SELECT * FROM select_vuelo()";
+      $vuelo = new Vuelo();
+      return new Resultset(null, $vuelo, $vuelo->getReadConnection()->query($sql));
+    }
+	
+	/*OBTENER VUELO POR CODIGO*/
+	public static function getByCodigo($codigo)
+    {
+      $sql = "SELECT * FROM select_vuelo_id('$codigo')";
+      $vuelo = new Vuelo();
+      return new Resultset(null, $vuelo, $vuelo->getReadConnection()->query($sql));
+    }
+	
+	/*CREAR UNA NUEVO VUELO*/
+	public static function addVuelo($vuelo)
+    {
+      $sql = "SELECT * FROM create_vuelo('$vuelo->codigo','$vuelo->millas_reales','$vuelo->millas_otorgadas','$vuelo->origen','$vuelo->destino','$vuelo->linea_aerea_codigo')";
+      $vuelo = new Vuelo();
+      return new Resultset(null, $vuelo, $vuelo->getReadConnection()->query($sql));
+    }
+
+	/*ACTUALIZAR VUELO*/ 
+	public static function updateVuelo($codigo,$vuelo)
+	{
+	  $sql = "SELECT * FROM update_vuelo('$codigo','$vuelo->millas_reales','$vuelo->millas_otorgadas','$vuelo->origen','$vuelo->destino','$vuelo->linea_aerea_codigo')";
+	  $vuelo = new Vuelo();
+	  return new Resultset(null, $vuelo, $vuelo->getReadConnection()->query($sql));
+	}
+	
+	/*ELIMINAR VUELO*/
+	public static function deleteVuelo($codigo)
+    {
+      $sql = "SELECT * FROM delete_vuelo('$codigo')";
+      $vuelo = new Vuelo();
+      return new Resultset(null, $vuelo, $vuelo->getReadConnection()->query($sql));
+    }
 }
