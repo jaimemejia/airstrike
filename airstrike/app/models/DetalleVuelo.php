@@ -84,4 +84,39 @@ class DetalleVuelo extends \Phalcon\Mvc\Model
         return parent::findFirst($parameters);
     }
 
+    public static function getAll()
+    {
+      $sql = "SELECT * FROM get_detalle_vuelo()";
+      $detalleVuelo = new DetalleVuelo();
+      return new Resultset(null, $detalleVuelo, $detalleVuelo->getReadConnection()->query($sql));
+    }
+
+    public static function getById($id)
+    {
+      $sql = "SELECT * FROM get_detalle_vuelo('$id')";
+      $detalleVuelo = new DetalleVuelo();
+      return new Resultset(null, $detalleVuelo, $detalleVuelo->getReadConnection()->query($sql));
+    }
+
+    public static function addDetalleVuelo($detalleVuelo)
+    {
+      $sql = "SELECT * FROM create_detalle_vuelo('$detalleVuelo->tipo_clase_id','$detalleVuelo->itinerario_id','$detalleVuelo->numero_asiento','$detalleVuelo->programacion_vuelo_id')";
+      $detalleVuelo = new DetalleVuelo();
+      return new Resultset(null, $detalleVuelo, $detalleVuelo->getReadConnection()->query($sql));
+    }
+
+    public static function updateDetalleVuelo($id, $detalleVuelo )
+    {
+      $sql = "SELECT * FROM update_detalle_vuelo('$id','$detalleVuelo->tipo_clase_id','$detalleVuelo->itinerario_id','$detalleVuelo->numero_asiento','$detalleVuelo->programacion_vuelo_id')";
+      $detalleVuelo = new DetalleVuelo();
+      return new Resultset(null, $detalleVuelo, $detalleVuelo->getReadConnection()->query($sql));
+    }
+
+    public static function deleteDetalleVuelo($id)
+    {
+      $sql = "SELECT * FROM delete_detalle_vuelo('$id')";
+      $detalleVuelo = new DetalleVuelo();
+      return new Resultset(null, $detalleVuelo, $detalleVuelo->getReadConnection()->query($sql));
+    }
+
 }
