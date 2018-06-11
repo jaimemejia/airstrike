@@ -112,7 +112,7 @@ class Aeropuerto extends \Phalcon\Mvc\Model
 	/*ACTUALIZAR AEROPUERTO*/ 
 	public static function updateAeropuerto($codigo,$aeropuerto)
 	{
-	  $sql = "SELECT * FROM update_aeropuerto('$codigo','$codigo','$aeropuerto->nombre','$aeropuerto->telefono','$aeropuerto->bahias','$aeropuerto->ciudad_codigo')";
+	  $sql = "SELECT * FROM update_aeropuerto('$codigo','$aeropuerto->nombre','$aeropuerto->telefono','$aeropuerto->bahias','$aeropuerto->ciudad_codigo')";
 	  $aeropuerto = new Aeropuerto();
 	  return new Resultset(null, $aeropuerto, $aeropuerto->getReadConnection()->query($sql));
 	}
