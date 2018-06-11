@@ -1,5 +1,9 @@
 <?php
 
+use Phalcon\Mvc\Model;
+use Phalcon\Mvc\Model\Resultset\Simple as Resultset;
+
+
 class Itinerario extends \Phalcon\Mvc\Model
 {
 
@@ -76,6 +80,41 @@ class Itinerario extends \Phalcon\Mvc\Model
     public static function findFirst($parameters = null)
     {
         return parent::findFirst($parameters);
+    }
+
+    public static function getAll()
+    {
+      $sql = "SELECT * FROM get_itinerario()";
+      $itinerario = new Itinerario();
+      return new Resultset(null, $itinerario, $itinerario->getReadConnection()->query($sql));
+    }
+
+    public static function getById($id)
+    {
+      $sql = "SELECT * FROM get_itinerario('$id')";
+      $itinerario = new Itinerario();
+      return new Resultset(null, $itinerario, $itinerario->getReadConnection()->query($sql));
+    }
+
+    public static function addItinerario($itinerario)
+    {
+      $sql = "SELECT * FROM create_itinerario('$itinerario->fecha_creacion','$itinerario->origen','$itinerario->destino')";
+      $itinerario = new Itinerario();
+      return new Resultset(null, $itinerario, $itinerario->getReadConnection()->query($sql));
+    }
+
+    public static function updateItinerario($id, $itinerario )
+    {
+      $sql = "SELECT * FROM update_itinerario('$id','$itinerario->fecha_creacion','$itinerario->origen','$itinerario->destino')";
+      $itinerario = new Itinerario();
+      return new Resultset(null, $itinerario, $itinerario->getReadConnection()->query($sql));
+    }
+
+    public static function deleteItinerario($id)
+    {
+      $sql = "SELECT * FROM delete_itinerario('$id')";
+      $itinerario = new Itinerario();
+      return new Resultset(null, $itinerario, $itinerario->getReadConnection()->query($sql));
     }
 
 }

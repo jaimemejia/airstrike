@@ -39,7 +39,7 @@
      $app->put('/api/rol/{id:[0-9]+}', function($id) use ($app){
          $rol=$app->request->getJsonRawBody();
          var_dump($rol);
-         Permiso::updatePermiso($id, $rol);
+         Rol::updatePermiso($id, $rol);
      });
 
      $app->delete('/api/rol/{id:[0-9]+}', function($id) use ($app){

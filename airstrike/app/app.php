@@ -24,6 +24,7 @@ include 'apps/ContactoApp.php';
 include 'apps/EstadoApp.php';
 include 'apps/GatewayApp.php';
 include 'apps/HorarioApp.php';
+include 'apps/ItininerarioApp.php';
 include 'apps/LineaAreaApp.php';
 include 'apps/MenuApp.php';
 include 'apps/PaisApp.php';
