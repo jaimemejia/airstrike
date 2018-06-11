@@ -91,7 +91,7 @@ class Pais extends \Phalcon\Mvc\Model
 	/*ACTUALIZAR PAIS*/ 
 	public static function updatePais($codigo,$pais )
 	{
-	  $sql = "SELECT * FROM update_pais('$codigo','$codigo','$pais->nombre')";
+	  $sql = "SELECT * FROM update_pais('$codigo','$pais->nombre')";
 	  $pais = new Pais();
 	  return new Resultset(null, $pais, $pais->getReadConnection()->query($sql));
 	}
