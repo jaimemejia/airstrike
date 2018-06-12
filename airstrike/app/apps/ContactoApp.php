@@ -9,6 +9,7 @@ $app->get('/api/contacto', function() use ($app)
 	{
 	  $data[]=array
 	  (
+		'id' => $contacto->id,
 		'direccion_web' => $contacto->direccion_web,
 		'nombre' => $contacto->nombre,
 		'linea_aerea_codigo' => $contacto->linea_aerea_codigo
@@ -26,6 +27,7 @@ $app->get('/api/contacto/{id:[0-9]+}', function($id) use ($app)
 	{
 	  $data[]=array
 	  (
+		'id' => $contacto->id,
 		'direccion_web' => $contacto->direccion_web,
 		'nombre' => $contacto->nombre,
 		'linea_aerea_codigo' => $contacto->linea_aerea_codigo

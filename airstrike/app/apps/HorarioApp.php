@@ -9,6 +9,7 @@ $app->get('/api/horario', function() use ($app)
 	{
 	  $data[]=array
 	  (
+		'id' => $horario->id,
 		'hora' => $horario->hora,
 		'tiempo_abordaje' => $horario->tiempo_abordaje,
 		'tiempo_desabordaje' => $horario->tiempo_desabordaje
@@ -26,6 +27,7 @@ $app->get('/api/horario/{id:[0-9]+}', function($id) use ($app)
 	{
 	  $data[]=array
 	  (
+		'id' => $horario->id,
 		'hora' => $horario->hora,
 		'tiempo_abordaje' => $horario->tiempo_abordaje,
 		'tiempo_desabordaje' => $horario->tiempo_desabordaje
