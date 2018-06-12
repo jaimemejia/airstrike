@@ -67,7 +67,7 @@ class Pais extends \Phalcon\Mvc\Model
 	/*OBTENER TODOS LOS PAISES*/
 	public static function getAll()
     {
-      $sql = "SELECT * FROM select_pais()";
+      $sql = "SELECT * FROM get_pais()";
       $pais = new Pais();
       return new Resultset(null, $pais, $pais->getReadConnection()->query($sql));
     }
@@ -75,7 +75,7 @@ class Pais extends \Phalcon\Mvc\Model
 	/*OBTENER PAIS POR CODIGO*/
 	public static function getByCodigo($codigo)
     {
-      $sql = "SELECT * FROM select_pais_id('$codigo')";
+      $sql = "SELECT * FROM get_pais('$codigo')";
       $pais = new Pais();
       return new Resultset(null, $pais, $pais->getReadConnection()->query($sql));
     }

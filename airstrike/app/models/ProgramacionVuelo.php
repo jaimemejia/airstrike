@@ -91,7 +91,7 @@ class ProgramacionVuelo extends \Phalcon\Mvc\Model
 	/*OBTENER TODAS LAS PROGRAMACIONES*/
 	public static function getAll()
     {
-      $sql = "SELECT * FROM select_programacion_vuelo()";
+      $sql = "SELECT * FROM get_programacion_vuelo()";
       $programacion_vuelo = new ProgramacionVuelo();
       return new Resultset(null, $programacion_vuelo, $programacion_vuelo->getReadConnection()->query($sql));
     }
@@ -99,7 +99,7 @@ class ProgramacionVuelo extends \Phalcon\Mvc\Model
 	/*OBTENER PROGRAMACION POR ID*/
 	public static function getById($id)
     {
-      $sql = "SELECT * FROM select_programacion_vuelo_id('$id')";
+      $sql = "SELECT * FROM get_programacion_vuelo('$id')";
       $programacion_vuelo = new ProgramacionVuelo();
       return new Resultset(null, $programacion_vuelo, $programacion_vuelo->getReadConnection()->query($sql));
     }

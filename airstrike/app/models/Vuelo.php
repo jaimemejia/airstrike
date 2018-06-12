@@ -96,7 +96,7 @@ class Vuelo extends \Phalcon\Mvc\Model
 	/*OBTENER TODOS LOS VUELOS*/
 	public static function getAll()
     {
-      $sql = "SELECT * FROM select_vuelo()";
+      $sql = "SELECT * FROM get_vuelo()";
       $vuelo = new Vuelo();
       return new Resultset(null, $vuelo, $vuelo->getReadConnection()->query($sql));
     }
@@ -104,7 +104,7 @@ class Vuelo extends \Phalcon\Mvc\Model
 	/*OBTENER VUELO POR CODIGO*/
 	public static function getByCodigo($codigo)
     {
-      $sql = "SELECT * FROM select_vuelo_id('$codigo')";
+      $sql = "SELECT * FROM get_vuelo('$codigo')";
       $vuelo = new Vuelo();
       return new Resultset(null, $vuelo, $vuelo->getReadConnection()->query($sql));
     }

@@ -88,7 +88,7 @@ class Aeropuerto extends \Phalcon\Mvc\Model
 	/*OBTENER TODOS LOS AEROPUERTOS*/
 	public static function getAll()
     {
-      $sql = "SELECT * FROM select_aeropuerto()";
+      $sql = "SELECT * FROM get_aeropuerto()";
       $aeropuerto = new Aeropuerto();
       return new Resultset(null, $aeropuerto, $aeropuerto->getReadConnection()->query($sql));
     }
@@ -96,7 +96,7 @@ class Aeropuerto extends \Phalcon\Mvc\Model
 	/*OBTENER AEROPUERTO POR CODIGO*/
 	public static function getByCodigo($codigo)
     {
-      $sql = "SELECT * FROM select_aeropuerto_id('$codigo')";
+      $sql = "SELECT * FROM get_aeropuerto('$codigo')";
       $aeropuerto = new Aeropuerto();
       return new Resultset(null, $aeropuerto, $aeropuerto->getReadConnection()->query($sql));
     }

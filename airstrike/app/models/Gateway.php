@@ -76,7 +76,7 @@ class Gateway extends \Phalcon\Mvc\Model
 	/*OBTENER TODOS LOS GATEWAY*/
 	public static function getAll()
     {
-      $sql = "SELECT * FROM select_gateway()";
+      $sql = "SELECT * FROM get_gateway()";
       $gateway = new Gateway();
       return new Resultset(null, $gateway, $gateway->getReadConnection()->query($sql));
     }
@@ -84,7 +84,7 @@ class Gateway extends \Phalcon\Mvc\Model
 	/*OBTENER GATEWAY POR ID*/
 	public static function getById($id)
     {
-      $sql = "SELECT * FROM select_gateway_id('$id')";
+      $sql = "SELECT * FROM get_gateway('$id')";
       $gateway = new Gateway();
       return new Resultset(null, $gateway, $gateway->getReadConnection()->query($sql));
     }

@@ -81,7 +81,7 @@ class Contacto extends \Phalcon\Mvc\Model
 	/*OBTENER TODOS LOS CONTACTOS*/
 	public static function getAll()
     {
-      $sql = "SELECT * FROM select_contacto()";
+      $sql = "SELECT * FROM get_contacto()";
       $contacto = new Contacto();
       return new Resultset(null, $contacto, $contacto->getReadConnection()->query($sql));
     }
@@ -89,7 +89,7 @@ class Contacto extends \Phalcon\Mvc\Model
 	/*OBTENER CONTACTO POR ID*/
 	public static function getById($id)
     {
-      $sql = "SELECT * FROM select_contacto_id('$id')";
+      $sql = "SELECT * FROM get_contacto('$id')";
       $contacto = new Contacto();
       return new Resultset(null, $contacto, $contacto->getReadConnection()->query($sql));
     }

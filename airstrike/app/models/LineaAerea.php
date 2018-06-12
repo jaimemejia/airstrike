@@ -112,7 +112,7 @@ class LineaAerea extends \Phalcon\Mvc\Model
 	/*OBTENER TODAS LAS LINEAS AEREAS*/
 	public static function getAll()
     {
-      $sql = "SELECT * FROM select_linea_aerea()";
+      $sql = "SELECT * FROM get_linea_aerea()";
       $lineaAerea = new LineaAerea();
       return new Resultset(null, $lineaAerea, $lineaAerea->getReadConnection()->query($sql));
     }
@@ -120,7 +120,7 @@ class LineaAerea extends \Phalcon\Mvc\Model
 	/*OBTENER LINEA AEREA POR CODIGO*/
 	public static function getByCodigo($codigo)
     {
-      $sql = "SELECT * FROM select_linea_aerea_id('$codigo')";
+      $sql = "SELECT * FROM get_linea_aerea('$codigo')";
       $lineaAerea = new LineaAerea();
       return new Resultset(null, $lineaAerea, $lineaAerea->getReadConnection()->query($sql));
     }

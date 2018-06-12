@@ -78,7 +78,7 @@ class Ciudad extends \Phalcon\Mvc\Model
 	/*OBTENER TODAS LAS CIUDADES*/
 	public static function getAll()
     {
-      $sql = "SELECT * FROM select_ciudad()";
+      $sql = "SELECT * FROM get_ciudad()";
       $ciudad = new Ciudad();
       return new Resultset(null, $ciudad, $ciudad->getReadConnection()->query($sql));
     }
@@ -86,7 +86,7 @@ class Ciudad extends \Phalcon\Mvc\Model
 	/*OBTENER CIUDAD POR CODIGO*/
 	public static function getByCodigo($codigo)
     {
-      $sql = "SELECT * FROM select_ciudad_id('$codigo')";
+      $sql = "SELECT * FROM get_ciudad('$codigo')";
       $ciudad = new Ciudad();
       return new Resultset(null, $ciudad, $ciudad->getReadConnection()->query($sql));
     }

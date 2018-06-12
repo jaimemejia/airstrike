@@ -81,7 +81,7 @@ class Horario extends \Phalcon\Mvc\Model
 	/*OBTENER TODOS LOS HORARIOS*/
 	public static function getAll()
     {
-      $sql = "SELECT * FROM select_horario()";
+      $sql = "SELECT * FROM get_horario()";
       $horario = new Horario();
       return new Resultset(null, $horario, $horario->getReadConnection()->query($sql));
     }
@@ -89,7 +89,7 @@ class Horario extends \Phalcon\Mvc\Model
 	/*OBTENER HORARIO POR ID*/
 	public static function getById($id)
     {
-      $sql = "SELECT * FROM select_horario_id('$id')";
+      $sql = "SELECT * FROM get_horario('$id')";
       $horario = new Horario();
       return new Resultset(null, $horario, $horario->getReadConnection()->query($sql));
     }
