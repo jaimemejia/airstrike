@@ -63,4 +63,42 @@ class TipoAvion extends \Phalcon\Mvc\Model
         return parent::findFirst($parameters);
     }
 
+     public static function getAll(){
+       $sql = "select * from get_all_tipo_avion()";
+       $tipoAvion = new TipoAvion();
+       return new Resultset(null, $tipoAvion, $tipoAvion->getReadConnection()->query($sql));
+
+     }
+
+     public static function getById($id)
+     {
+       $sql = "SELECT * FROM get_one_tipo_avion('$id')";
+       $tipoAvion  = new TipoAvion();
+       return new Resultset(null, $tipoAvion, $tipoAvion->getReadConnection()->query($sql));
+     }
+
+
+
+     public static function addTipoAvion($tipoAvion)
+     {
+       $sql = "SELECT * FROM create_tipo_avion('$tipoAvion->nombre')";
+       $tipoAvion = new TipoAvion();
+       return new Resultset(null, $tipoAvion, $tipoAvion->getReadConnection()->query($sql));
+     }
+
+     public static function updateTipoAvion($id, $tipoAvion )
+     {
+       $sql = "SELECT * FROM update_tipo_avion('$id','$tipoAvion->nombre')";
+       $tipoAvion = new TipoAvion();
+       return new Resultset(null, $tipoAvion, $tipoAvion->getReadConnection()->query($sql));
+     }
+
+     public static function deleteTipoAvion($id)
+     {
+       $sql = "SELECT * FROM delete_tipo_avion('$id')";
+       $tipoAvion = new TipoAvion();
+       return new Resultset(null, $tipoAvion, $tipoAvion->getReadConnection()->query($sql));
+     }
+
+
 }

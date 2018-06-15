@@ -1,4 +1,6 @@
 <?php
+use Phalcon\Mvc\Model;
+use Phalcon\Mvc\Model\Resultset\Simple as Resultset;
 
 class TipoClase extends \Phalcon\Mvc\Model
 {
@@ -62,5 +64,45 @@ class TipoClase extends \Phalcon\Mvc\Model
     {
         return parent::findFirst($parameters);
     }
+
+    public static function getAll()
+    {
+      $sql = "SELECT * FROM get_tipo_clase()";
+      $tipoClase = new TipoClase();
+      return new Resultset(null, $tipoClase, $tipoClase->getReadConnection()->query($sql));
+    }
+
+    public static function getById($id)
+    {
+      $sql = "SELECT * FROM get_tipo_clase('$id')";
+      $tipoClase = new TipoClase();
+      return new Resultset(null, $tipoClase, $tipoClase->getReadConnection()->query($sql));
+    }
+
+    public static function addTipoClase($tipoClase)
+    {
+      $sql = "SELECT * FROM create_tipo_clase('$tipoClase->nombre')";
+      $tipoClase = new TipoClase();
+      return new Resultset(null, $tipoClase, $tipoClase->getReadConnection()->query($sql));
+    }
+
+    public static function updateTipoClase($id, $tipoClase )
+    {
+      $sql = "SELECT * FROM update_tipo_clase('$id','$tipoClase->nombre')";
+      $tipoClase = new TipoPermiso();
+      return new Resultset(null, $tipoClase, $tipoClase->getReadConnection()->query($sql));
+    }
+
+    public static function deleteTipoClase($id)
+    {
+      $sql = "SELECT * FROM delete_tipo_clase('$id')";
+      $tipoClase = new TipoClase();
+      return new Resultset(null, $tipoClase, $tipoClase->getReadConnection()->query($sql));
+    }
+
+
+
+
+
 
 }

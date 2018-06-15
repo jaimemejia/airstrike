@@ -1,5 +1,7 @@
 <?php
 
+use Phalcon\Mvc\Model;
+use Phalcon\Mvc\Model\Resultset\Simple as Resultset;
 class RegistroPago extends \Phalcon\Mvc\Model
 {
 
@@ -28,9 +30,9 @@ class RegistroPago extends \Phalcon\Mvc\Model
 
     /**
      *
-     * @var integer
+     * @var string
      * @Identity
-     * @Column(column="reservacion_id", type="integer", nullable=false)
+     * @Column(column="reservacion_id", type="string", nullable=false)
      */
     public $reservacion_id;
 
@@ -76,4 +78,46 @@ class RegistroPago extends \Phalcon\Mvc\Model
         return parent::findFirst($parameters);
     }
 
+
+       public static function getAll()
+        {
+          $sql = "SELECT * FROM get_registro_pago()";
+          $registroPago = new RegistroPago();
+          return new Resultset(null, $registroPago, $registroPago->getReadConnection()->query($sql));
+        }
+
+      public static function getById($id)
+        {
+          $sql = "SELECT * FROM get_registro_pago('$id')";
+          $registroPago = new RegistroPago();
+          return new Resultset(null, $registroPago, $registroPago->getReadConnection()->query($sql));
+        }
+
+        public static function addRegistroPago($registroPago)
+        {
+          $sql = "SELECT * FROM create_registro_pago(
+            '$registroPago->precio',
+            '$registroPago->fecha',
+            '$registroPago->reservacion_id')";
+            $registroPago = new RegistroPago();
+          return new Resultset(null, $registroPago, $registroPago->getReadConnection()->query($sql));
+        }
+
+        public static function updateRegistroPago($id, $registroPago )
+        {
+          $sql = "SELECT * FROM update_registro_pago(
+            '$id',
+            '$registroPago->precio',
+            '$registroPago->fecha',
+            '$registroPago->reservacion_id')";
+          $registroPago = new RegistroPago();
+          return new Resultset(null, $registroPago, $registroPago->getReadConnection()->query($sql));
+        }
+
+        public static function deleteRegistroPago($id)
+        {
+          $sql = "SELECT * FROM delete_registro_pago('$id')";
+          $registroPago = new registroPago();
+          return new Resultset(null, $registroPago, $registroPago->getReadConnection()->query($sql));
+        }
 }

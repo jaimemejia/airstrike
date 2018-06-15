@@ -1,5 +1,8 @@
 <?php
 
+use Phalcon\Mvc\Model;
+use Phalcon\Mvc\Model\Resultset\Simple as Resultset;
+
 class ModeloAvion extends \Phalcon\Mvc\Model
 {
 
@@ -82,5 +85,51 @@ class ModeloAvion extends \Phalcon\Mvc\Model
     {
         return parent::findFirst($parameters);
     }
+
+
+    public static function getAll()
+        {
+          $sql = "SELECT * FROM get_modelo_avion()";
+          $modeloAvion = new ModeloAvion();
+          return new Resultset(null, $modeloAvion, $modeloAvion->getReadConnection()->query($sql));
+        }
+
+      public static function getById($id)
+        {
+          $sql = "SELECT * FROM get_one_modelo_avion('$id')";
+          $modeloAvion = new ModeloAvion();
+          return new Resultset(null, $modeloAvion, $modeloAvion->getReadConnection()->query($sql));
+        }
+
+        public static function addModeloAvion($modeloAvion)
+        {
+          $sql = "SELECT * FROM create_modelo_avion(
+           '$modeloAvion->nombre_modelo',
+            '$modeloAvion->marca',
+            '$modeloAvion->cantidad_maleta',
+            '$modeloAvion->cantidad_asientos')";
+            $modeloAvion = new ModeloAvion();
+          return new Resultset(null, $modeloAvion, $modeloAvion->getReadConnection()->query($sql));
+        }
+
+        public static function updateModeloAvion($id, $modeloAvion )
+        {
+          $sql = "SELECT * FROM update_modelo_avion(
+            '$id',
+            '$modeloAvion->nombre_modelo',
+             '$modeloAvion->marca',
+             '$modeloAvion->cantidad_maleta',
+             '$modeloAvion->cantidad_asientos')";
+          $modeloAvion = new ModeloAvion();
+          return new Resultset(null, $modeloAvion, $modeloAvion->getReadConnection()->query($sql));
+        }
+
+        public static function deleteModeloAvion($id)
+        {
+          $sql = "SELECT * FROM delete_modelo_avion('$id')";
+          $modeloAvion = new ModeloAvion();
+          return new Resultset(null, $modeloAvion, $modeloAvion->getReadConnection()->query($sql));
+        }
+
 
 }

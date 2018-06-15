@@ -1,5 +1,6 @@
 <?php
-
+use Phalcon\Mvc\Model;
+use Phalcon\Mvc\Model\Resultset\Simple as Resultset;
 class CNatural extends \Phalcon\Mvc\Model
 {
 
@@ -95,5 +96,40 @@ class CNatural extends \Phalcon\Mvc\Model
     {
         return parent::findFirst($parameters);
     }
+
+     public static function getAll()
+        {
+          $sql = "SELECT * FROM get_c_natural()";
+          $cnatural = new CNatural();
+          return new Resultset(null, $cnatural, $cnatural->getReadConnection()->query($sql));
+        }
+
+      public static function getById($id)
+        {
+          $sql = "SELECT * FROM get_c_natural('$id')";
+          $cnatural = new CNatural();
+          return new Resultset(null, $cnatural, $cnatural->getReadConnection()->query($sql));
+        }
+
+        public static function addCNatural($cnatural)
+        {
+          $sql = "SELECT * FROM create_c_natural('$cnatural->estado_civil','$cnatural->genero','$cnatural->fecha_nacimiento', '$cnatural->tipo_doc','$cnatural->num_doc','$cnatural->id_cliente')";
+            $cnatural = new CNatural();
+          return new Resultset(null, $cnatural, $cnatural->getReadConnection()->query($sql));
+        }
+
+        public static function updateCNatural($id, $cnatural )
+        {
+          $sql = "SELECT * FROM update_c_natural('$id','$cnatural->estado_civil','$cnatural->genero','$cnatural->fecha_nacimiento', '$cnatural->tipo_doc','$cnatural->num_doc','$cnatural->id_cliente')";
+          $cnatural = new CNatural();
+          return new Resultset(null, $cnatural, $cnatural->getReadConnection()->query($sql));
+        }
+
+        public static function deleteCNatural($id)
+        {
+          $sql = "SELECT * FROM delete_c_natural('$id')";
+          $cnatural = new CNatural();
+          return new Resultset(null, $cnatural, $cnatural->getReadConnection()->query($sql));
+        }
 
 }

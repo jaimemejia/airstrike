@@ -1,5 +1,6 @@
 <?php
-
+use Phalcon\Mvc\Model;
+use Phalcon\Mvc\Model\Resultset\Simple as Resultset;
 class Reservacion extends \Phalcon\Mvc\Model
 {
 
@@ -83,5 +84,49 @@ class Reservacion extends \Phalcon\Mvc\Model
     {
         return parent::findFirst($parameters);
     }
+
+    public static function getAll()
+        {
+          $sql = "SELECT * FROM get_reservacion()";
+          $reservacion = new Reservacion();
+          return new Resultset(null, $reservacion, $reservacion->getReadConnection()->query($sql));
+        }
+
+      public static function getById($id)
+        {
+          $sql = "SELECT * FROM get_reservacion('$id')";
+          $reservacion = new Reservacion();
+          return new Resultset(null, $reservacion, $reservacion->getReadConnection()->query($sql));
+        }
+
+        public static function addReservacion($reservacion)
+        {
+          $sql = "SELECT * FROM create_reservacion(
+          '$reservacion->asiento_reservados',
+          '$reservacion->cantidad_maletas',
+          '$reservacion->id_cliente',
+          '$reservacion->itinerario_id')";
+            $reservacion = new Reservacion();
+          return new Resultset(null, $reservacion, $reservacion->getReadConnection()->query($sql));
+        }
+
+        public static function updateReservacion($id, $reservacion )
+        {
+          $sql = "SELECT * FROM update_reservacion(
+          '$id',
+           '$reservacion->asiento_reservados',
+          '$reservacion->cantidad_maletas',
+          '$reservacion->id_cliente',
+          '$reservacion->itinerario_id')";
+          $reservacion = new Reservacion();
+          return new Resultset(null, $reservacion, $reservacion->getReadConnection()->query($sql));
+        }
+
+        public static function deleteReservacion($id)
+        {
+          $sql = "SELECT * FROM delete_reservacion('$id')";
+          $reservacion = new Reservacion();
+          return new Resultset(null, $reservacion, $reservacion->getReadConnection()->query($sql));
+        }
 
 }

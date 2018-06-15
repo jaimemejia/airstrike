@@ -1,5 +1,8 @@
 <?php
 
+use Phalcon\Mvc\Model;
+use Phalcon\Mvc\Model\Resultset\Simple as Resultset;
+
 class CEmpresa extends \Phalcon\Mvc\Model
 {
 
@@ -88,5 +91,53 @@ class CEmpresa extends \Phalcon\Mvc\Model
     {
         return parent::findFirst($parameters);
     }
+
+     public static function getAll()
+        {
+          $sql = "SELECT * FROM get_c_empresa()";
+          $cempresa = new CEmpresa();
+          return new Resultset(null, $cempresa, $cempresa->getReadConnection()->query($sql));
+        }
+
+      public static function getById($id)
+        {
+          $sql = "SELECT * FROM get_c_empresa('$id')";
+          $cempresa = new CEmpresa();
+          return new Resultset(null, $cempresa, $cempresa->getReadConnection()->query($sql));
+        }
+
+        public static function addCEmpresa($cempresa)
+        {
+          $sql = "SELECT * FROM create_c_empresa(
+           '$cempresa->nombre_empresa',
+            '$cempresa->nit',
+            '$cempresa->nic',
+            '$cempresa->nombre_contacto',
+            '$cempresa->id_cliente')";
+            $cempresa = new CEmpresa();
+          return new Resultset(null, $cempresa, $cempresa->getReadConnection()->query($sql));
+        }
+
+        public static function updateCEmpresa($id, $cempresa )
+        {
+          $sql = "SELECT * FROM update_c_empresa(
+            '$id',
+            '$cempresa->nombre_empresa',
+            '$cempresa->nit',
+            '$cempresa->nic',
+            '$cempresa->nombre_contacto',
+            '$cempresa->id_cliente')";
+          $cempresa = new CEmpresa();
+          return new Resultset(null, $cempresa, $cempresa->getReadConnection()->query($sql));
+        }
+
+        public static function deleteCEmpresa($id)
+        {
+          $sql = "SELECT * FROM delete_c_empresa('$id')";
+          $cempresa = new CEmpresa();
+          return new Resultset(null, $cempresa, $cempresa->getReadConnection()->query($sql));
+        }
+
+
 
 }

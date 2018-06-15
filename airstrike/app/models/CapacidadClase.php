@@ -1,5 +1,8 @@
 <?php
 
+use Phalcon\Mvc\Model;
+use Phalcon\Mvc\Model\Resultset\Simple as Resultset;
+
 class CapacidadClase extends \Phalcon\Mvc\Model
 {
 
@@ -74,6 +77,48 @@ class CapacidadClase extends \Phalcon\Mvc\Model
     public static function findFirst($parameters = null)
     {
         return parent::findFirst($parameters);
+    }
+
+    public static function getAll()
+    {
+      $sql = "SELECT * FROM get_capacidad_clase()";
+      $capacidadClase = new CapacidadClase();
+      return new Resultset(null, $capacidadClase, $capacidadClase->getReadConnection()->query($sql));
+    }
+
+    public static function getById($id)
+    {
+      $sql = "SELECT * FROM get_capacidad_clase('$id')";
+      $capacidadClase = new CapacidadClase();
+      return new Resultset(null, $capacidadClase, $capacidadClase->getReadConnection()->query($sql));
+    }
+
+    public static function addCapacidadClase($capacidadClase)
+    {
+      $sql = "SELECT * FROM create_capacidad_clase(
+        '$capacidadClase->cantidad',
+        '$capacidadClase->id_clases',
+        '$capacidadClase->modelo_avion_id')";
+      $capacidadClase = new TipoPermiso();
+      return new Resultset(null, $capacidadClase, $capacidadClase->getReadConnection()->query($sql));
+    }
+
+    public static function updateCapacidadClase($id, $capacidadClase)
+    {
+      $sql = "SELECT * FROM update_capacidad_clase(
+        '$id',
+        '$capacidadClase->cantidad',
+        '$capacidadClase->id_clases',
+        '$capacidadClase->modelo_avion_id')";
+      $capacidadClase = new CapacidadClase();
+      return new Resultset(null, $capacidadClase, $capacidadClase->getReadConnection()->query($sql));
+    }
+
+    public static function deleteCapacidadClase($id)
+    {
+      $sql = "SELECT * FROM delete_capacidad_clase('$id')";
+      $capacidadClase = new CapacidadClase();
+      return new Resultset(null, $capacidadClase, $capacidadClase->getReadConnection()->query($sql));
     }
 
 }

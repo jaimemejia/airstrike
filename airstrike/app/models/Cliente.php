@@ -1,4 +1,6 @@
 <?php
+use Phalcon\Mvc\Model;
+use Phalcon\Mvc\Model\Resultset\Simple as Resultset;
 
 class Cliente extends \Phalcon\Mvc\Model
 {
@@ -119,5 +121,44 @@ class Cliente extends \Phalcon\Mvc\Model
     {
         return parent::findFirst($parameters);
     }
+
+
+
+    public static function getAll()
+        {
+          $sql = "SELECT * FROM get_cliente()";
+          $cliente = new Cliente();
+          return new Resultset(null, $cliente, $cliente->getReadConnection()->query($sql));
+        }
+
+    public static function getById($id)
+        {
+          $sql = "SELECT * FROM get_cliente('$id')";
+          $cliente = new Cliente();
+          return new Resultset(null, $cliente, $cliente->getReadConnection()->query($sql));
+        }
+
+     public static function addCliente($cliente)
+        {
+          $sql = "SELECT * FROM create_cliente('$cliente->primer_nombre','$cliente->segundo_nombre','$cliente->primer_apellido','$cliente->segundo_apellido','$cliente->tel_fijo','$cliente->tel_movil','$cliente->direccion','$cliente->num_viajero','$cliente->id_usuario')";
+            $cliente = new Cliente();
+          return new Resultset(null, $cliente, $cliente->getReadConnection()->query($sql));
+        }    
+
+     public static function updateCliente($id, $cliente)
+        {
+          $sql = "SELECT * FROM update_cliente('$id','$cliente->primer_nombre','$cliente->segundo_nombre','$cliente->primer_apellido','$cliente->segundo_apellido','$cliente->tel_fijo','$cliente->tel_movil','$cliente->direccion','$cliente->num_viajero','$cliente->id_usuario')";
+          $cliente = new Cliente();
+          return new Resultset(null, $cliente, $cliente->getReadConnection()->query($sql));
+        }
+
+    
+      public static function deleteCliente($id)
+        {
+          $sql = "SELECT * FROM delete_cliente('$id')";
+          $cliente = new Cliente();
+          return new Resultset(null, $cliente, $cliente->getReadConnection()->query($sql));
+        }
+    
 
 }

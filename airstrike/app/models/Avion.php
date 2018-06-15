@@ -1,4 +1,6 @@
 <?php
+use Phalcon\Mvc\Model;
+use Phalcon\Mvc\Model\Resultset\Simple as Resultset;
 
 class Avion extends \Phalcon\Mvc\Model
 {
@@ -76,5 +78,50 @@ class Avion extends \Phalcon\Mvc\Model
     {
         return parent::findFirst($parameters);
     }
+
+    public static function getAll()
+    {
+      $sql = "SELECT * FROM get_avion()";
+      $avion = new Avion();
+      return new Resultset(null, $avion, $avion->getReadConnection()->query($sql));
+    }
+
+    public static function getById($placa)
+      {
+        $sql = "SELECT * FROM get_avion('$placa')";
+        $avion = new Avion();
+        return new Resultset(null, $avion, $avion->getReadConnection()->query($sql));
+      }
+
+      public static function addAvion($avion)
+      {
+        $sql = "SELECT * FROM create_avion('$avion->placa',
+         '$avion->tipo_avion_id',
+          '$avion->linea_aerea_codigo',
+          '$avion->modelo_avion_id')";
+          $avion = new Avion();
+        return new Resultset(null, $avion, $avion->getReadConnection()->query($sql));
+      }
+
+      public static function updateAvion($placa, $avion)
+      {
+        $sql = "SELECT * FROM update_avion('$placa',
+          '$avion->tipo_avion_id',
+           '$avion->linea_aerea_codigo',
+           '$avion->modelo_avion_id')";
+           $avion = new Avion();
+         return new Resultset(null, $avion, $avion->getReadConnection()->query($sql));
+       }
+
+      public static function deleteAvion($placa)
+      {
+        $sql = "SELECT * FROM delete_avion('$placa')";
+        $avion = new Avion();
+        return new Resultset(null, $avion, $avion->getReadConnection()->query($sql));
+      }
+
+
+
+
 
 }
