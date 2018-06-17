@@ -64,7 +64,7 @@ class TipoAvion extends \Phalcon\Mvc\Model
     }
 
      public static function getAll(){
-       $sql = "select * from get_all_tipo_avion()";
+       $sql = "SELECT * FROM get_tipo_avion()";
        $tipoAvion = new TipoAvion();
        return new Resultset(null, $tipoAvion, $tipoAvion->getReadConnection()->query($sql));
 
@@ -72,7 +72,7 @@ class TipoAvion extends \Phalcon\Mvc\Model
 
      public static function getById($id)
      {
-       $sql = "SELECT * FROM get_one_tipo_avion('$id')";
+       $sql = "SELECT * FROM get_tipo_avion('$id')";
        $tipoAvion  = new TipoAvion();
        return new Resultset(null, $tipoAvion, $tipoAvion->getReadConnection()->query($sql));
      }
