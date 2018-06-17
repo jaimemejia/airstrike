@@ -1,4 +1,5 @@
 <?php
+use Phalcon\Http\Response;
 /**
  *Inicio de rutas para Cliente
  */
@@ -9,6 +10,9 @@ $app->get('/api/cliente', function() use ($app){
     $data = array();
     foreach ($clientes as $cliente){
       $data[]=array(
+        'id_usuario' => $cliente->id_usuario,
+        'username' => $cliente->username,
+        'millas' => $cliente->millas,
         'primer_nombre' => $cliente->primer_nombre,
         'segundo_nombre' => $cliente->segundo_nombre,
         'primer_apellido' => $cliente->primer_apellido,
@@ -17,10 +21,47 @@ $app->get('/api/cliente', function() use ($app){
         'tel_movil' => $cliente->tel_movil,
         'direccion' => $cliente->direccion,
         'num_viajero' => $cliente->num_viajero,
-        'id_usuario' => $cliente->id_usuario,
+        'estado_civil' => $cliente->estado_civil,
+        'genero' => $cliente->genero,
+        'tipo_doc' => $cliente->tipo_doc,
+        'num_doc' => $cliente->num_doc,
+        'id_cliente' => $cliente->id_cliente,
+        'nombre_empresa' => $cliente->nombre_empresa,
+        'nit' => $cliente->nit,
+        'nic' => $cliente->nic,
+        'nombre_contacto' => $cliente->nombre_contacto,
       );
     }
-  echo json_encode($data,JSON_PRETTY_PRINT);
+
+    //echo json_encode($data,JSON_PRETTY_PRINT);
+    $response = new Response();
+
+      // Check if the insertion was successful
+      if ( sizeof($data) >0 ) {
+          // Change the HTTP status
+          $response->setStatusCode(200, 'Succeed');
+          $response->setJsonContent(
+              [
+                  'status' => 'OK',
+                  'data'   => $data,
+              ]
+          );
+      } else {
+          // Change the HTTP status
+          $response->setStatusCode(200, 'Succeed');
+
+          // Send errors to the client
+
+          $response->setJsonContent(
+              [
+                  'status'   => 'ERROR'
+              ]
+          );
+      }
+
+      $response->setHeader('Access-Control-Allow-Origin', '*');
+      $response->setHeader('Access-Control-Allow-Headers', 'X-Requested-With');
+      return $response;
 });
 
 $app->get('/api/cliente/{id:[0-9]+}', function($id) use ($app){

@@ -19,6 +19,7 @@ $app->get('/', function () {
 
 
 include 'apps/AeropuertoApp.php';
+include 'apps/AuthApp.php';
 include 'apps/CiudadApp.php';
 include 'apps/ContactoApp.php';
 include 'apps/DetalleVueloApp.php';
