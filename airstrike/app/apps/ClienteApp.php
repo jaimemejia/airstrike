@@ -81,23 +81,117 @@ $app->get('/api/cliente/{id:[0-9]+}', function($id) use ($app){
         'id_usuario' => $cliente->id_usuario,
       );
     }
-  echo json_encode($data,JSON_PRETTY_PRINT);
+
+    //echo json_encode($data,JSON_PRETTY_PRINT);
+    $response = new Response();
+
+      // Check if the insertion was successful
+      if ( sizeof($data) >0 ) {
+          // Change the HTTP status
+          $response->setStatusCode(200, 'Succeed');
+          $response->setJsonContent(
+              [
+                  'status' => 'OK',
+                  'data'   => $data,
+              ]
+          );
+      } else {
+          // Change the HTTP status
+          $response->setStatusCode(200, 'Succeed');
+
+          // Send errors to the client
+
+          $response->setJsonContent(
+              [
+                  'status'   => 'ERROR'
+              ]
+          );
+      }
+
+      $response->setHeader('Access-Control-Allow-Origin', '*');
+      $response->setHeader('Access-Control-Allow-Headers', 'X-Requested-With');
+      return $response;
 });
 
 $app->post('/api/cliente', function() use ($app){
     $cliente=$app->request->getJsonRawBody();
-    Cliente::addCliente($cliente);
+
+    $response = new Response();
+    $aeropuerto=$app->request->getJsonRawBody();
+      var_dump($aeropuerto);
+      if(Cliente::addCliente($cliente)){
+          $response->setStatusCode(200, 'Succeed');
+          $response->setJsonContent(
+            [
+                'status' => 'OK',
+            ]
+        );
+      }else{
+          $response->setStatusCode(200, 'Succeed');
+
+        // Send errors to the client
+
+        $response->setJsonContent(
+            [
+                'status'   => 'ERROR'
+            ]
+        );
+      }
+    $response->setHeader('Access-Control-Allow-Origin', '*');
+      $response->setHeader('Access-Control-Allow-Headers', 'X-Requested-With');
+      return $response;
 });
 
 $app->put('/api/cliente/{id:[0-9]+}', function($id) use ($app){
     $cliente=$app->request->getJsonRawBody();
     var_dump($cliente);
-    Cliente::updateCliente($id, $cliente);
+
+    if(Cliente::updateCliente($id, $cliente)){
+        $response->setStatusCode(200, 'Succeed');
+        $response->setJsonContent(
+          [
+              'status' => 'OK',
+          ]
+      );
+    }else{
+        $response->setStatusCode(200, 'Succeed');
+
+      // Send errors to the client
+
+      $response->setJsonContent(
+          [
+              'status'   => 'ERROR'
+          ]
+      );
+    }
+	$response->setHeader('Access-Control-Allow-Origin', '*');
+    $response->setHeader('Access-Control-Allow-Headers', 'X-Requested-With');
+    return $response;
 });
 
 $app->delete('/api/cliente/{id:[0-9]+}', function($id) use ($app){
 
-    CLiente::deleteCliente($id);
+    if(CLiente::deleteCliente($id)){
+        $response->setStatusCode(200, 'Succeed');
+        $response->setJsonContent(
+          [
+              'status' => 'OK',
+          ]
+      );
+    }else{
+        $response->setStatusCode(200, 'Succeed');
+
+      // Send errors to the client
+
+      $response->setJsonContent(
+          [
+              'status'   => 'ERROR'
+          ]
+      );
+    }
+	$response->setHeader('Access-Control-Allow-Origin', '*');
+    $response->setHeader('Access-Control-Allow-Headers', 'X-Requested-With');
+    return $response;
 });
 /**
  *Fin de rutas para Cliente
