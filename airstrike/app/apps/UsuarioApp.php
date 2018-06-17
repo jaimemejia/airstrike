@@ -13,7 +13,7 @@ $app->get('/api/usuario', function() use ($app){
         'id_usuario' => $usuario->id_usuario,
         'id_rol' => $usuario->id_rol,
         'id_estado'=> $usuario->id_estado,
-        'millas'=> $usuario->milas,
+        'millas'=> $usuario->millas,
         'username'=> $usuario->username,
         'password'=> $usuario->password,
       );
@@ -56,7 +56,7 @@ $app->get('/api/usuario/{id:[0-9]+}', function($id) use ($app){
         'id_usuario' => $usuario->id_usuario,
         'id_rol' => $usuario->id_rol,
         'id_estado'=> $usuario->id_estado,
-        'millas'=> $usuario->milas,
+        'millas'=> $usuario->millas,
         'username'=> $usuario->username,
         'password'=> $usuario->password,
       );
