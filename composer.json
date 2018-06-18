@@ -1,0 +1,7 @@
+{
+    "name": "jaime/airstrike",
+    "description": "Sistema de Vuelos Airstrike",
+    "require": {
+        "dmkit/phalcon-jwt-auth": "^1.0"
+    }
+}

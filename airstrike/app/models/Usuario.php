@@ -93,9 +93,17 @@ class Usuario extends \Phalcon\Mvc\Model
       return new Resultset(null, $usuario, $usuario->getReadConnection()->query($sql));
     }
 
+    public static function getByUsernameAndPassword($username,$password)
+    {
+
+      $sql = "SELECT * FROM get_usuario('$username','$password')";
+      $usuario = new Usuario();
+      return new Resultset(null, $usuario, $usuario->getReadConnection()->query($sql));
+    }
+
     public static function addUsuario($usuario)
     {
-      $sql = "SELECT * FROM create_usuario('$usuario->id_rol','$usuario->id_estado','$usuario->millas','$usuario->username','$usuario->password')";
+      $sql = "SELECT * FROM create_usuario($usuario->id_rol,$usuario->id_estado,$usuario->millas,'$usuario->username','$usuario->password')";
       $usuario = new Usuario();
       return new Resultset(null, $usuario, $usuario->getReadConnection()->query($sql));
     }

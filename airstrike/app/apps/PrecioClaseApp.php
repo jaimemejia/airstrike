@@ -17,7 +17,35 @@ $app->get('/api/precioclase', function() use ($app){
         'precio_maleta'=> $precioClase->precio_maleta,
       );
     }
-  echo json_encode($data,JSON_PRETTY_PRINT);
+    //echo json_encode($data,JSON_PRETTY_PRINT);
+  	$response = new Response();
+
+      // Check if the insertion was successful
+      if ( sizeof($data) >0 ) {
+          // Change the HTTP status
+          $response->setStatusCode(200, 'Succeed');
+          $response->setJsonContent(
+              [
+                  'status' => 'OK',
+                  'data'   => $data,
+              ]
+          );
+      } else {
+          // Change the HTTP status
+          $response->setStatusCode(200, 'Succeed');
+
+          // Send errors to the client
+
+          $response->setJsonContent(
+              [
+                  'status'   => 'ERROR'
+              ]
+          );
+      }
+
+      $response->setHeader('Access-Control-Allow-Origin', '*');
+      $response->setHeader('Access-Control-Allow-Headers', 'X-Requested-With');
+      return $response;
 });
 
 $app->get('/api/precioclase/{id:[0-9]+}', function($id) use ($app){
@@ -33,23 +61,114 @@ $app->get('/api/precioclase/{id:[0-9]+}', function($id) use ($app){
         'precio_maleta'=> $precioClase->precio_maleta,
       );
     }
-  echo json_encode($data,JSON_PRETTY_PRINT);
+    //echo json_encode($data,JSON_PRETTY_PRINT);
+    $response = new Response();
+
+      // Check if the insertion was successful
+      if ( sizeof($data) >0 ) {
+          // Change the HTTP status
+          $response->setStatusCode(200, 'Succeed');
+          $response->setJsonContent(
+              [
+                  'status' => 'OK',
+                  'data'   => $data,
+              ]
+          );
+      } else {
+          // Change the HTTP status
+          $response->setStatusCode(200, 'Succeed');
+
+          // Send errors to the client
+
+          $response->setJsonContent(
+              [
+                  'status'   => 'ERROR'
+              ]
+          );
+      }
+
+      $response->setHeader('Access-Control-Allow-Origin', '*');
+      $response->setHeader('Access-Control-Allow-Headers', 'X-Requested-With');
+      return $response;
 });
 
 $app->post('/api/precioclase', function() use ($app){
     $precioClase=$app->request->getJsonRawBody();
-    PrecioClase::addPrecioClase($precioClase);
+    $response = new Response();
+      if(PrecioClase::addPrecioClase($precioClase)){
+          $response->setStatusCode(200, 'Succeed');
+          $response->setJsonContent(
+            [
+                'status' => 'OK',
+            ]
+        );
+      }else{
+          $response->setStatusCode(200, 'Succeed');
+
+        // Send errors to the client
+
+        $response->setJsonContent(
+            [
+                'status'   => 'ERROR'
+            ]
+        );
+      }
+    $response->setHeader('Access-Control-Allow-Origin', '*');
+      $response->setHeader('Access-Control-Allow-Headers', 'X-Requested-With');
+      return $response;
 });
 
 $app->put('/api/precioclase/{id:[0-9]+}', function($id) use ($app){
     $precioClase=$app->request->getJsonRawBody();
     var_dump($precioClase);
-    PrecioClase::updatePrecioClase($id, $precioClase);
+    $response = new Response();
+    if(PrecioClase::updatePrecioClase($id, $precioClase)){
+        $response->setStatusCode(200, 'Succeed');
+        $response->setJsonContent(
+          [
+              'status' => 'OK',
+          ]
+      );
+    }else{
+        $response->setStatusCode(200, 'Succeed');
+
+      // Send errors to the client
+
+      $response->setJsonContent(
+          [
+              'status'   => 'ERROR'
+          ]
+      );
+    }
+	$response->setHeader('Access-Control-Allow-Origin', '*');
+    $response->setHeader('Access-Control-Allow-Headers', 'X-Requested-With');
+    return $response;
 });
 
 $app->delete('/api/precioclase/{id:[0-9]+}', function($id) use ($app){
 
-    PrecioClase::deletePrecioClase($id);
+    $response = new Response();
+    if(PrecioClase::deletePrecioClase($id)){
+        $response->setStatusCode(200, 'Succeed');
+        $response->setJsonContent(
+          [
+              'status' => 'OK',
+          ]
+      );
+    }else{
+        $response->setStatusCode(200, 'Succeed');
+
+      // Send errors to the client
+
+      $response->setJsonContent(
+          [
+              'status'   => 'ERROR'
+          ]
+      );
+    }
+	$response->setHeader('Access-Control-Allow-Origin', '*');
+    $response->setHeader('Access-Control-Allow-Headers', 'X-Requested-With');
+    return $response;
 });
 
 /**

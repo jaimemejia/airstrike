@@ -44,10 +44,10 @@ $app->get('/api/usuario', function() use ($app){
 }
 
 $response->setHeader('Access-Control-Allow-Origin', '*');
-$response->setHeader('Access-Control-Allow-Headers', 'X-Requested-With');   
+$response->setHeader('Access-Control-Allow-Headers', 'X-Requested-With');
 return $response;
 });
-/*OBTENER AEROPUERTO POR CODIGO*/
+
 $app->get('/api/usuario/{id:[0-9]+}', function($id) use ($app){
     $usuarios = Usuario::getById($id);
     $data = array();
@@ -88,7 +88,7 @@ $app->get('/api/usuario/{id:[0-9]+}', function($id) use ($app){
     }
 
     $response->setHeader('Access-Control-Allow-Origin', '*');
-    $response->setHeader('Access-Control-Allow-Headers', 'X-Requested-With');   
+    $response->setHeader('Access-Control-Allow-Headers', 'X-Requested-With');
     return $response;
 });
 /*CREAR UN NUEVO USUARIO*/
@@ -98,7 +98,7 @@ $app->post('/api/usuario', function() use ($app){
     $response = new Response();
 	$usuario=$app->request->getJsonRawBody();
     var_dump($usuario);
-    if(usuario::addUsuario($usuario)){
+    if(Usuario::addUsuario($usuario)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(
           [
@@ -117,7 +117,7 @@ $app->post('/api/usuario', function() use ($app){
       );
     }
 	$response->setHeader('Access-Control-Allow-Origin', '*');
-    $response->setHeader('Access-Control-Allow-Headers', 'X-Requested-With');   
+    $response->setHeader('Access-Control-Allow-Headers', 'X-Requested-With');
     return $response;
 
 });
@@ -148,7 +148,7 @@ $app->put('/api/usuario/{id:[0-9]+}', function($id) use ($app){
       );
     }
 	$response->setHeader('Access-Control-Allow-Origin', '*');
-    $response->setHeader('Access-Control-Allow-Headers', 'X-Requested-With');   
+    $response->setHeader('Access-Control-Allow-Headers', 'X-Requested-With');
     return $response;
 });
 /*ELIMINAR Usuario*/
@@ -177,7 +177,7 @@ $app->delete('/api/usuario/{id:[0-9]+}', function($id) use ($app){
       );
     }
 	$response->setHeader('Access-Control-Allow-Origin', '*');
-    $response->setHeader('Access-Control-Allow-Headers', 'X-Requested-With');   
+    $response->setHeader('Access-Control-Allow-Headers', 'X-Requested-With');
     return $response;
 });
 

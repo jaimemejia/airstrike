@@ -114,32 +114,73 @@ $app->get('/api/cliente/{id:[0-9]+}', function($id) use ($app){
 });
 
 $app->post('/api/cliente', function() use ($app){
-    $cliente=$app->request->getJsonRawBody();
+    //Declaraciones
+    $response=new Response();
+    $usuario=new \stdClass();
+    $cliente=new \stdClass();
+    $cliente_juridico=new \stdClass();
+    $cliente_natural=new \stdClass();
 
-    $response = new Response();
-    $aeropuerto=$app->request->getJsonRawBody();
-      var_dump($aeropuerto);
-      if(Cliente::addCliente($cliente)){
+    $cliente_json=$app->request->getJsonRawBody();
+    $usuario->id_estado=1;
+    $usuario->id_rol=$cliente_json->usuario->id_rol;
+    $usuario->millas=0;
+    $usuario->username=$cliente_json->usuario->username;
+    $usuario->password=hash('sha512',$cliente_json->usuario->password);
+    $usuario->id_usuario=Usuario::addUsuario($usuario)[0]->create_usuario;
+
+    if($usuario->id_usuario){
+      $cliente->id_usuario=$usuario->id_usuario;
+      $cliente->primer_nombre=$cliente_json->primer_nombre;
+      $cliente->segundo_nombre=$cliente_json->segundo_nombre;
+      $cliente->primer_apellido=$cliente_json->primer_apellido;
+      $cliente->segundo_apellido=$cliente_json->segundo_apellido;
+      $cliente->tel_fijo=$cliente_json->tel_fijo;
+      $cliente->tel_movil=$cliente_json->tel_movil;
+      $cliente->direccion=$cliente_json->direccion;
+      $cliente->id_cliente=Cliente::addCliente($cliente)[0]->create_cliente;
+
+      if($cliente->id_cliente and strcasecmp($cliente_json->tipo_cliente,'juridico')==0){
+        $cliente_juridico->id_cliente=$cliente->id_cliente;
+        $cliente_juridico->nombre_empresa=$cliente_json->detalle_empresa->nombre_empresa;
+        $cliente_juridico->nit=$cliente_json->detalle_empresa->nit;
+        $cliente_juridico->nic=$cliente_json->detalle_empresa->nic;
+        $cliente_juridico->nombre_contacto=$cliente_json->detalle_empresa->nombre_contacto;
+        if(CEmpresa::addCEmpresa($cliente_juridico)){
           $response->setStatusCode(200, 'Succeed');
-          $response->setJsonContent(
-            [
-                'status' => 'OK',
-            ]
-        );
-      }else{
-          $response->setStatusCode(200, 'Succeed');
+          $response->setJsonContent([
+            'status' => 'OK',
+          ]);
+        }
 
-        // Send errors to the client
-
-        $response->setJsonContent(
-            [
-                'status'   => 'ERROR'
-            ]
-        );
       }
+      elseif ($cliente->id_cliente and strcasecmp($cliente_json->tipo_cliente,'natural')==0){
+        $cliente_natural->id_cliente=$cliente->id_cliente;
+        $cliente_natural->estado_civil=$cliente_json->detalle_natural->estado_civil;
+        $cliente_natural->genero=$cliente_json->detalle_natural->genero;
+        $cliente_natural->fecha_nacimiento=$cliente_json->detalle_natural->fecha_nacimiento;
+        $cliente_natural->tipo_doc=$cliente_json->detalle_natural->tipo_doc;
+        $cliente_natural->num_doc=$cliente_json->detalle_natural->num_doc;
+        if(CNatural::addCNatural($cliente_natural)){
+          $response->setStatusCode(200, 'Succeed');
+          $response->setJsonContent([
+            'status' => 'OK',
+          ]);
+        }
+
+      }
+
+    }
+    else{
+      $response->setStatusCode(200, 'Succeed');
+      // Send errors to the client
+      $response->setJsonContent([
+        'status'   => 'ERROR'
+      ]);
+    }
     $response->setHeader('Access-Control-Allow-Origin', '*');
-      $response->setHeader('Access-Control-Allow-Headers', 'X-Requested-With');
-      return $response;
+    $response->setHeader('Access-Control-Allow-Headers', 'X-Requested-With');
+    return $response;
 });
 
 $app->put('/api/cliente/{id:[0-9]+}', function($id) use ($app){
