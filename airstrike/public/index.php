@@ -58,11 +58,13 @@ $authConfig = [
             '/airstrike/airstrike/api/login',
             '/airstrike/api/login',
             '/backair/airstrike/api/login',
-        ]
+            ],
 ];
 
 // AUTH MICRO
 $auth = new AuthMicro($app, $authConfig);
+
+$auth->setIgnoreOptionsMethod();
 
     /**
      * Include Application
