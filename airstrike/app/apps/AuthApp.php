@@ -6,7 +6,6 @@ use Phalcon\Http\Response;
     $response = new Response();
 
     $logged=$app->request->getJsonRawBody();
-    var_dump($app->request->get());
     $users=Usuario::getByUsernameAndPassword($logged->username,hash('sha512',$logged->password));
     if($users->count()==1){
       foreach ($users as $user){
@@ -27,9 +26,9 @@ use Phalcon\Http\Response;
     }
     else {
       $response->setJsonContent(array(
-        'res' => 'not found'
+        'res' => 'Unauthorized'
       ));
-      $response->setStatusCode(404,'NOT FOUND');
+      $response->setStatusCode(401,'Unauthorized');
     }
 
     $response->send();
