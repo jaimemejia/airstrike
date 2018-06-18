@@ -12,6 +12,7 @@ use Phalcon\Http\Response;
          'menu_superior_id' => $menu->menu_superior_id,
          'estado' => $menu->estado,
          'nombre' => $menu->nombre,
+		 'llave' => $menu->llave
        );
      }
    //echo json_encode($data,JSON_PRETTY_PRINT);
@@ -58,6 +59,7 @@ use Phalcon\Http\Response;
          'menu_superior_id' => $menu->menu_superior_id,
          'estado' => $menu->estado,
          'nombre' => $menu->nombre,
+		 'llave' => $menu->llave
        );
      }
    //echo json_encode($data,JSON_PRETTY_PRINT);
