@@ -7,8 +7,15 @@ use Phalcon\Http\Response;
 
     $logged=$app->request->getJsonRawBody();
     $users=Usuario::getByUsernameAndPassword($logged->username,hash('sha512',$logged->password));
+
     if($users->count()==1){
       foreach ($users as $user){
+        $usuario = [
+          'id_usuario'=> $user->id_usuario,
+          'id_rol'=> $user->id_rol,
+          'id_estado'=> $user->id_estado,
+          'username'=> $user->username
+        ];
         $payload = [
           'sub'   => $user->id_usuario,
           'username' =>  $user->username,
@@ -21,6 +28,8 @@ use Phalcon\Http\Response;
         'code' => 0,
         'res' => 'success',
         'token' => $token,
+        'usuario'=> $usuario
+
       ));
       $response->setStatusCode(200,'OK');
     }
