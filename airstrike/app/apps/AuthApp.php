@@ -7,8 +7,7 @@ use Phalcon\Http\Response;
 
     $logged=$app->request->getJsonRawBody();
     var_dump($app->request->get());
-    $users=Usuario::getByUsernameAndPassword($logged->username,$logged->password);
-
+    $users=Usuario::getByUsernameAndPassword($logged->username,hash('sha512',$logged->password));
     if($users->count()==1){
       foreach ($users as $user){
         $payload = [
@@ -30,7 +29,7 @@ use Phalcon\Http\Response;
       $response->setJsonContent(array(
         'res' => 'not found'
       ));
-      $response-setStatusCode(404,'NOT FOUND');
+      $response->setStatusCode(404,'NOT FOUND');
     }
 
     $response->send();

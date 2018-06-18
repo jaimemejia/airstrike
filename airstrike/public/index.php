@@ -57,6 +57,7 @@ $authConfig = [
             '/auth/application',
             '/airstrike/airstrike/api/login',
             '/airstrike/api/login',
+            '/backair/airstrike/api/login',
         ]
 ];
 
