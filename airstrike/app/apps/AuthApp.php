@@ -31,6 +31,8 @@ use Phalcon\Http\Response;
       $response->setStatusCode(401,'Unauthorized');
     }
 
+    $response->setHeader('Access-Control-Allow-Origin', '*');
+    $response->setHeader('Access-Control-Allow-Headers', 'X-Requested-With'); 
     $response->send();
 
   });
