@@ -107,7 +107,7 @@ $app->post('/api/lineaaerea', function() use ($app)
     //LineaAerea::addLineaAerea($lineaaerea);
 	$response = new Response();
 	$lineaaerea=$app->request->getJsonRawBody();
-    var_dump($lineaaerea);
+    //var_dump($lineaaerea);
     if(LineaAerea::addLineaAerea($lineaaerea)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(
@@ -135,12 +135,12 @@ $app->post('/api/lineaaerea', function() use ($app)
 $app->put('/api/lineaaerea/{codigo:[0-9]+}', function($codigo) use ($app)
 {
  $lineaaerea=$app->request->getJsonRawBody();
- var_dump($lineaaerea);
+ //var_dump($lineaaerea);
  //LineaAerea::updateLineaAerea($codigo, $lineaaerea);
  
  $response = new Response();
 	$lineaaerea=$app->request->getJsonRawBody();
-    var_dump($lineaaerea);
+    //var_dump($lineaaerea);
     if(LineaAerea::updateLineaAerea($codigo, $lineaaerea)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(
@@ -171,7 +171,7 @@ $app->delete('/api/lineaaerea/{codigo:[0-9]+}', function($codigo) use ($app)
 	
 	$response = new Response();
 	$lineaaerea=$app->request->getJsonRawBody();
-    var_dump($lineaaerea);
+    //var_dump($lineaaerea);
     if(LineaAerea::deleteLineaAerea($codigo)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(

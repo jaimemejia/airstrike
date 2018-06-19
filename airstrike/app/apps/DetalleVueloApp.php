@@ -118,7 +118,7 @@ $response->setHeader('Access-Control-Allow-Origin', '*');
 /*ACTUALIZAR detalle vuelo*/
 $app->put('/api/detallevuelo/{id:[0-9]+}', function($id) use ($app){
     $detalleVuelo=$app->request->getJsonRawBody();
-    var_dump($detalleVuelo);
+    //var_dump($detalleVuelo);
     //DetalleVuelo::updateDetalleVuelo($id, $detalleVuelo);
     if(DetalleVuelo::updateDetalleVuelo($id, $detalleVuelo)){
       $response->setStatusCode(200, 'Succeed');
@@ -149,7 +149,7 @@ $app->delete('/api/detallevuelo/{id:[0-9]+}', function($id) use ($app){
     $response = new Response();
 	$detalleVuelo=$app->request->getJsonRawBody();
 	$detalleVuelo=$app->request->getJsonRawBody();
-  var_dump($detalleVuelo);
+  //var_dump($detalleVuelo);
     if(DetalleVuelo::deleteDetalleVuelo($id)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(

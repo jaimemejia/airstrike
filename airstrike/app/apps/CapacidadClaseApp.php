@@ -95,7 +95,7 @@ $app->post('/api/capacidadclase', function() use ($app){
     //CapacidadClase::addCapacidadClase($capacidadClase);
     $response = new Response();
   $capacidadClase=$app->request->getJsonRawBody();
-    var_dump($capacidadClase);
+    //var_dump($capacidadClase);
     if(CapacidadClase::addCapacidadClase($capacidadClase)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(
@@ -121,12 +121,12 @@ $app->post('/api/capacidadclase', function() use ($app){
 
 $app->put('/api/capacidadclase/{id:[0-9]+}', function($id) use ($app){
     $capacidadClase=$app->request->getJsonRawBody();
-    var_dump($capacidadClase);
+    //var_dump($capacidadClase);
     //CapacidadClase::updateCapacidadClase($id, $capacidadClase);
 
     $response = new Response();
   $capacidadClase=$app->request->getJsonRawBody();
-    var_dump($capacidadClase);
+    //var_dump($capacidadClase);
     if(CapacidadClase::updateCapacidadClase($id, $capacidadClase)
 ){
         $response->setStatusCode(200, 'Succeed');
@@ -156,7 +156,7 @@ $app->delete('/api/capacidadclase/{id:[0-9]+}', function($id) use ($app){
    // CapacidadClase::deleteCapacidadClase($id);
 $response = new Response();
   $capacidadclase=$app->request->getJsonRawBody();
-    var_dump($capacidadclase);
+    //var_dump($capacidadclase);
     if(CapacidadClase::deleteCapacidadClase($id)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(

@@ -94,7 +94,7 @@ $app->post('/api/itinerario', function() use ($app){
     
 	$response = new Response();
 	$itinerario=$app->request->getJsonRawBody();
-    var_dump($itinerario);
+    //var_dump($itinerario);
     if(Itinerario::addItinerario($itinerario)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(
@@ -120,11 +120,11 @@ $app->post('/api/itinerario', function() use ($app){
 /*ACTUALIZAR itinerario*/
 $app->put('/api/itinerario/{id:[0-9]+}', function($id) use ($app){
     $itinerario=$app->request->getJsonRawBody();
-    var_dump($itinerario);
+    //var_dump($itinerario);
     //Itinerario::updateItinerario($id, $itinerario);
     $response = new Response();
 	$itinerario=$app->request->getJsonRawBody();
-    var_dump($itinerario);
+    //var_dump($itinerario);
     if(Itinerario::updateItinerario($id, $itinerario)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(
@@ -154,7 +154,7 @@ $app->delete('/api/itinerario/{id:[0-9]+}', function($id) use ($app){
     
 	$response = new Response();
 	$itinerario=$app->request->getJsonRawBody();
-    var_dump($itinerario);
+    //var_dump($itinerario);
     if(Itinerario::deleteItinerario($id)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(

@@ -100,7 +100,7 @@ $app->post('/api/horario', function() use ($app)
 	
 	$response = new Response();
 	$horario=$app->request->getJsonRawBody();
-    var_dump($horario);
+    //var_dump($horario);
     if(Horario::addHorario($horario)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(
@@ -128,12 +128,12 @@ $app->post('/api/horario', function() use ($app)
 $app->put('/api/horario/{id:[0-9]+}', function($id) use ($app)
 {
 	$horario=$app->request->getJsonRawBody();
-	var_dump($horario);
+	//var_dump($horario);
 	//Horario::updateHorario($id, $horario);
 	
 	$response = new Response();
 	$horario=$app->request->getJsonRawBody();
-    var_dump($horario);
+    //var_dump($horario);
     if(Horario::updateHorario($id, $horario)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(
@@ -163,7 +163,7 @@ $app->delete('/api/horario/{id:[0-9]+}', function($id) use ($app)
 	//Horario::deleteHorario($id);
 	$response = new Response();
 	$horario=$app->request->getJsonRawBody();
-    var_dump($horario);
+    //var_dump($horario);
     if(Horario::deleteHorario($id)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(

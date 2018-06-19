@@ -97,7 +97,6 @@ $app->post('/api/avion', function() use ($app){
    // Avion::addAvion($avion);
 $response = new Response();
   $avion=$app->request->getJsonRawBody();
-    var_dump($avion);
     if(Avion::addAvion($avion)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(
@@ -124,12 +123,10 @@ $response = new Response();
 
 $app->put('/api/avion/{placa:[a-zA-Z]+}', function($placa) use ($app){
     $avion=$app->request->getJsonRawBody();
-    var_dump($avion);
     //Avion::updateAvion($placa, $avion);
 
     $response = new Response();
   $aeropuerto=$app->request->getJsonRawBody();
-    var_dump($aeropuerto);
     if(Avion::updateAvion($placa, $avion)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(
@@ -160,7 +157,6 @@ $app->delete('/api/avion/{placa:[a-zA-Z]+}', function($placa) use ($app){
 
   $response = new Response();
   $avion=$app->request->getJsonRawBody();
-    var_dump($avion);
     if(Avion::deleteAvion($placa)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(

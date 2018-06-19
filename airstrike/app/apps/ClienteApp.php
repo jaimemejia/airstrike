@@ -79,6 +79,22 @@ $app->get('/api/cliente/{id:[0-9]+}', function($id) use ($app){
         'direccion' => $cliente->direccion,
         'num_viajero' => $cliente->num_viajero,
         'id_usuario' => $cliente->id_usuario,
+        'id_natural' => $cliente->id_natural,
+        'estado_civil' => $cliente->estado_civil,
+        'genero' => $cliente->genero,
+        'fecha_nacimiento' => $cliente->fecha_nacimiento,
+        'tipo_doc' => $cliente->tipo_doc,
+        'num_doc' => $cliente->num_doc,
+        'id_c_empresa' => $cliente->id_c_empresa,
+        'nombre_empresa' => $cliente->nombre_empresa,
+        'nit' => $cliente->nit,
+        'nic' => $cliente->nic,
+        'nombre_contacto' => $cliente->nombre_contacto,
+        'id_usuario' => $cliente->id_usuario,
+        'username'=> $cliente->username,
+        'id_rol' => $cliente->id_rol,
+        'id_estado'=> $cliente->id_estado,
+        'millas'=> $cliente->millas,
       );
     }
 
@@ -185,7 +201,7 @@ $app->post('/api/cliente', function() use ($app){
 
 $app->put('/api/cliente/{id:[0-9]+}', function($id) use ($app){
     $cliente=$app->request->getJsonRawBody();
-    var_dump($cliente);
+    //var_dump($cliente);
 
     if(Cliente::updateCliente($id, $cliente)){
         $response->setStatusCode(200, 'Succeed');

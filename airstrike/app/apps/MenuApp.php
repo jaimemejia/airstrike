@@ -99,7 +99,7 @@ use Phalcon\Http\Response;
      
 	$response = new Response();
 	$menu=$app->request->getJsonRawBody();
-    var_dump($menu);
+    //var_dump($menu);
     if(Menu::addMenu($menu)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(
@@ -126,11 +126,11 @@ use Phalcon\Http\Response;
  $app->put('/api/menu/{id:[0-9]+}', function($id) use ($app)
  {
  	  $menu=$app->request->getJsonRawBody();
- 	  var_dump($menu);
+ 	  //var_dump($menu);
      //Menu::updateMenu($id, $menu);
      $response = new Response();
 	$menu=$app->request->getJsonRawBody();
-    var_dump($menu);
+    //var_dump($menu);
     if(Menu::updateMenu($id, $menu)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(
@@ -159,7 +159,7 @@ use Phalcon\Http\Response;
      //Menu::deleteMenu($id);
      $response = new Response();
 	$menu=$app->request->getJsonRawBody();
-    var_dump($menu);
+    //var_dump($menu);
     if(Menu::deleteMenu($id)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(

@@ -92,7 +92,7 @@ use Phalcon\Http\Response;
          //Rol::addRol($rol);
          $response = new Response();
 	$rol=$app->request->getJsonRawBody();
-    var_dump($rol);
+    //var_dump($rol);
     if(Rol::addRol($rol)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(
@@ -118,7 +118,7 @@ use Phalcon\Http\Response;
    /*ACTUALIZAR ROL*/
      $app->put('/api/rol/{id:[0-9]+}', function($id) use ($app){
          $rol=$app->request->getJsonRawBody();
-         var_dump($rol);
+         //var_dump($rol);
         // Rol::updatePermiso($id, $rol);
         if(Rol::updateRol($id, $rol)){
           $response->setStatusCode(200, 'Succeed');
@@ -148,7 +148,7 @@ use Phalcon\Http\Response;
         // Rol::deleteRol($id);
         $response = new Response();
 	$rol=$app->request->getJsonRawBody();
-    var_dump($rol);
+    //var_dump($rol);
     if(Rol::deleteRol($id)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(

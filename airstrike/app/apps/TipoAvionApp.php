@@ -92,7 +92,7 @@ $app->post('/api/tipoavion', function() use ($app){
    //TipoAvion::addTipoAvion($tipoAvion);  
     $response = new Response();
   $tipoAvion=$app->request->getJsonRawBody();
-    var_dump($tipoAvion);
+    //var_dump($tipoAvion);
     if(TipoAvion::addTipoAvion($tipoAvion)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(
@@ -118,11 +118,11 @@ $app->post('/api/tipoavion', function() use ($app){
 
 $app->put('/api/tipoavion/{id:[0-9]+}', function($id) use ($app){
     $tipoAvion=$app->request->getJsonRawBody();
-    var_dump($tipoAvion);
+    //var_dump($tipoAvion);
   //  TipoAvion::updateTipoAvion($id, $tipoAvion);
     $response = new Response();
   $tipoAvion=$app->request->getJsonRawBody();
-    var_dump($tipoAvion);
+    //var_dump($tipoAvion);
     if( TipoAvion::updateTipoAvion($id, $tipoAvion)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(
@@ -151,7 +151,7 @@ $app->delete('/api/tipoavion/{id:[0-9]+}', function($id) use ($app){
    // TipoAvion::deleteTipoAvion($id);
   $response = new Response();
   $tipoAvion=$app->request->getJsonRawBody();
-    var_dump($tipoAvion);
+    //var_dump($tipoAvion);
     if(TipoAvion::deleteTipoAvion($id)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(

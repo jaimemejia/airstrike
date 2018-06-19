@@ -98,7 +98,7 @@ $app->post('/api/ciudad', function() use ($app)
 	
 	$response = new Response();
 	$ciudad=$app->request->getJsonRawBody();
-    var_dump($ciudad);
+    //var_dump($ciudad);
     if(Ciudad::addCiudad($ciudad)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(
@@ -126,12 +126,12 @@ $app->post('/api/ciudad', function() use ($app)
 $app->put('/api/ciudad/{codigo:[0-9]+}', function($codigo) use ($app)
 {
 	$ciudad=$app->request->getJsonRawBody();
-	var_dump($ciudad);
+	//var_dump($ciudad);
 	//Ciudad::updateCiudad($codigo, $ciudad);
 	
 	$response = new Response();
 	$ciudad=$app->request->getJsonRawBody();
-    var_dump($ciudad);
+    //var_dump($ciudad);
     if(Ciudad::updateCiudad($codigo, $ciudad)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(
@@ -162,7 +162,7 @@ $app->delete('/api/ciudad/{codigo:[0-9]+}', function($codigo) use ($app)
 	
 	$response = new Response();
 	$ciudad=$app->request->getJsonRawBody();
-    var_dump($ciudad);
+    //var_dump($ciudad);
     if(Ciudad::deleteCiudad($codigo)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(

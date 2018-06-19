@@ -97,7 +97,7 @@ $app->post('/api/usuario', function() use ($app){
     //Usuario::addUsuario($usuario);
     $response = new Response();
 	$usuario=$app->request->getJsonRawBody();
-    var_dump($usuario);
+    //var_dump($usuario);
     if(Usuario::addUsuario($usuario)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(
@@ -124,11 +124,11 @@ $app->post('/api/usuario', function() use ($app){
 /*ACTUALIZAR Usuario*/
 $app->put('/api/usuario/{id:[0-9]+}', function($id) use ($app){
     $usuario=$app->request->getJsonRawBody();
-    var_dump($usuario);
+    //var_dump($usuario);
     //Usuario::updateUsuario($id, $usuario);
     $response = new Response();
 	$usuario=$app->request->getJsonRawBody();
-    var_dump($usuario);
+    //var_dump($usuario);
     if(Usuario::updateUsuario($id, $usuario)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(
@@ -157,7 +157,7 @@ $app->delete('/api/usuario/{id:[0-9]+}', function($id) use ($app){
     //Usuario::deleteUsuario($id);
     $response = new Response();
 	$usuario=$app->request->getJsonRawBody();
-    var_dump($usuario);
+    //var_dump($usuario);
     if(Usuario::deleteUsuario($id)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(

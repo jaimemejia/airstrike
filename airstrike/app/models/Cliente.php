@@ -133,7 +133,11 @@ class Cliente extends \Phalcon\Mvc\Model
 
     public static function getById($id)
         {
-          $sql = "SELECT * FROM get_cliente('$id')";
+          $sql = "SELECT * FROM cliente  as cl 
+          left join c_empresa ce on ce.id_cliente = cl.id_cliente
+          left join c_natural cn on cn.id_cliente = cl.id_cliente
+          left join usuario u on u.id_usuario = cl.id_usuario
+          where cl.id_cliente = $id ;";
           $cliente = new Cliente();
           return new Resultset(null, $cliente, $cliente->getReadConnection()->query($sql));
         }

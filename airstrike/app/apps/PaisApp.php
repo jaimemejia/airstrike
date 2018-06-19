@@ -95,7 +95,7 @@ $app->post('/api/pais', function() use ($app)
     //Pais::addPais($pais);
 	$response = new Response();
 	$pais=$app->request->getJsonRawBody();
-    var_dump($pais);
+    //var_dump($pais);
     if(Pais::addPais($pais)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(
@@ -123,11 +123,11 @@ $app->post('/api/pais', function() use ($app)
 $app->put('/api/pais/{codigo:[a-zA-Z]+}', function($codigo) use ($app)
 {
 	$pais=$app->request->getJsonRawBody();
-	var_dump($pais);
+	//var_dump($pais);
 	//Pais::updatePais($codigo, $pais);
 	$response = new Response();
 	$pais=$app->request->getJsonRawBody();
-    var_dump($pais);
+    //var_dump($pais);
     if(Pais::updatePais($codigo, $pais)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(
@@ -157,7 +157,7 @@ $app->delete('/api/pais/{codigo:[a-zA-Z]+}', function($codigo) use ($app)
 	//Pais::deletePais($codigo);
 	$response = new Response();
 	$pais=$app->request->getJsonRawBody();
-    var_dump($pais);
+    //var_dump($pais);
     if(Pais::deletePais($codigo)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(

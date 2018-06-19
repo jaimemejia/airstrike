@@ -100,7 +100,7 @@ use Phalcon\Http\Response;
         //$data = array();
         $response = new Response();
 	$permiso=$app->request->getJsonRawBody();
-    var_dump($permiso);
+    //var_dump($permiso);
     if(Permiso::addPermiso($permiso)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(
@@ -127,11 +127,11 @@ use Phalcon\Http\Response;
     /*ACTUALIZAR permiso*/
     $app->put('/api/permiso/{id:[0-9]+}', function($id) use ($app){
         $permiso=$app->request->getJsonRawBody();
-        var_dump($permiso);
+        //var_dump($permiso);
        // Permiso::updatePermiso($id, $permiso);
        $response = new Response();
 	$permiso=$app->request->getJsonRawBody();
-    var_dump($permiso);
+    //var_dump($permiso);
     if(Permiso::updatePermiso($id, $permiso)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(
@@ -160,7 +160,7 @@ use Phalcon\Http\Response;
         //Permiso::deletePermiso($id);
         $response = new Response();
 	$permiso=$app->request->getJsonRawBody();
-    var_dump($permiso);
+    //var_dump($permiso);
     if(Permiso::deletePermiso($id)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(

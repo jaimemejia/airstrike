@@ -102,7 +102,7 @@ $app->post('/api/cnatural', function() use ($app){
    // CNatural::addCNatural($cnatural);
     $response = new Response();
   $cnatural=$app->request->getJsonRawBody();
-    var_dump($cnatural);
+    //var_dump($cnatural);
     if(CNatural::addCNatural($cnatural)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(
@@ -129,11 +129,11 @@ $app->post('/api/cnatural', function() use ($app){
 
 $app->put('/api/cnatural/{id:[0-9]+}', function($id) use ($app){
     $cnatural=$app->request->getJsonRawBody();
-    var_dump($cnatural);
+    //var_dump($cnatural);
   //  CNatural::updateCNatural($id, $cnatural);
     $response = new Response();
   $cnatural=$app->request->getJsonRawBody();
-    var_dump($cnatural);
+    //var_dump($cnatural);
     if( CNatural::updateCNatural($id, $cnatural)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(
@@ -163,7 +163,7 @@ $app->delete('/api/cnatural/{id:[0-9]+}', function($id) use ($app){
 
   $response = new Response();
   $cnatural=$app->request->getJsonRawBody();
-    var_dump($cnatural);
+    //var_dump($cnatural);
     if(CNatural::deleteCNatural($id)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(
