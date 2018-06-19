@@ -35,6 +35,12 @@ class Menu extends \Phalcon\Mvc\Model
      * @Column(column="nombre", type="string", length=50, nullable=false)
      */
     public $nombre;
+	/**
+     *
+     * @var string
+     * @Column(column="llave", type="string", nullable=true)
+     */
+    public $llave;
 
     /**
      * Initialize method for model.

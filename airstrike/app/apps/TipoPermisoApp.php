@@ -90,7 +90,7 @@ $app->post('/api/tipopermiso', function() use ($app){
     //TipoPermiso::addTipoPermiso($tipoPermiso);
     $response = new Response();
 	$tipopermiso=$app->request->getJsonRawBody();
-    var_dump($tipopermiso);
+    //var_dump($tipopermiso);
     if(TipoPermiso::addATipoPermiso($tipopermiso)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(
@@ -117,11 +117,11 @@ $app->post('/api/tipopermiso', function() use ($app){
 /*ACTUALIZAR TipoPermiso*/
 $app->put('/api/tipopermiso/{id:[0-9]+}', function($id) use ($app){
     $tipoPermiso=$app->request->getJsonRawBody();
-    var_dump($tipoPermiso);
+    //var_dump($tipoPermiso);
     //TipoPermiso::updateTipoPermiso($id, $tipoPermiso);
     $response = new Response();
 	$tipopermiso=$app->request->getJsonRawBody();
-    var_dump($tipopermiso);
+    //var_dump($tipopermiso);
     if(TipoPermiso::updateTipoPermiso($id, $tipopermiso)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(
@@ -150,7 +150,7 @@ $app->delete('/api/tipopermiso/{id:[0-9]+}', function($id) use ($app){
     //TipoPermiso::deleteTipoPermiso($id);
     $response = new Response();
 	$tipopermiso=$app->request->getJsonRawBody();
-    var_dump($tipopermiso);
+    //var_dump($tipopermiso);
     if(TipoPermiso::deleteTipoPermiso($id)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(

@@ -100,7 +100,7 @@ $app->post('/api/contacto', function() use ($app)
 	
 	$response = new Response();
 	$contacto=$app->request->getJsonRawBody();
-    var_dump($contacto);
+    //var_dump($contacto);
     if(Contacto::addContacto($contacto)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(
@@ -128,12 +128,12 @@ $app->post('/api/contacto', function() use ($app)
 $app->put('/api/contacto/{id:[0-9]+}', function($id) use ($app)
 {
 	$contacto=$app->request->getJsonRawBody();
-	var_dump($contacto);
+	//var_dump($contacto);
 	//Contacto::updateContacto($id, $contacto);
 	
 	$response = new Response();
 	$contacto=$app->request->getJsonRawBody();
-    var_dump($contacto);
+    //var_dump($contacto);
     if(Contacto::updateContacto($id, $contacto)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(
@@ -163,7 +163,7 @@ $app->delete('/api/contacto/{id:[0-9]+}', function($id) use ($app)
 	//Contacto::deleteContacto($id);
 	$response = new Response();
 	$contacto=$app->request->getJsonRawBody();
-    var_dump($contacto);
+    //var_dump($contacto);
     if(Contacto::deleteContacto($id)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(

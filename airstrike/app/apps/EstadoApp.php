@@ -89,7 +89,7 @@ $app->post('/api/estado', function() use ($app){
     //Estado::addEstado($estado);
     $response = new Response();
 	$estado=$app->request->getJsonRawBody();
-    var_dump($estado);
+    //var_dump($estado);
     if(Estado::addEstado($estado)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(
@@ -115,11 +115,11 @@ $app->post('/api/estado', function() use ($app){
 /*ACTUALIZAR ESTADO*/
 $app->put('/api/estado/{id:[0-9]+}', function($id) use ($app){
     $estado=$app->request->getJsonRawBody();
-    var_dump($estado);
+    //var_dump($estado);
     //Estado::updateEstado($id, $estado);
     $response = new Response();
 	$estado=$app->request->getJsonRawBody();
-    var_dump($estado);
+    //var_dump($estado);
     if(Estado::updateEstado($id, $Estado)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(
@@ -148,7 +148,7 @@ $app->delete('/api/estado/{id:[0-9]+}', function($id) use ($app){
    // Estado::deleteEstado($id);
    $response = new Response();
    $estado=$app->request->getJsonRawBody();
-     var_dump($estado);
+     //var_dump($estado);
      if(Estado::deleteEstado($id)){
          $response->setStatusCode(200, 'Succeed');
          $response->setJsonContent(

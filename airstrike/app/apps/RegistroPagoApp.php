@@ -95,7 +95,7 @@ $app->post('/api/registropago', function() use ($app){
    // RegistroPago::addRegistroPago($registroPago);
     $response = new Response();
   $registroPago=$app->request->getJsonRawBody();
-    var_dump($registroPago);
+    //var_dump($registroPago);
     if(RegistroPago::addRegistroPago($registroPago)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(
@@ -121,11 +121,11 @@ $app->post('/api/registropago', function() use ($app){
 
 $app->put('/api/registropago/{id:[0-9]+}', function($id) use ($app){
     $registroPago=$app->request->getJsonRawBody();
-    var_dump($registroPago);
+    //var_dump($registroPago);
    // RegistroPago::updateRegistroPago($id, $registroPago);
     $response = new Response();
   $registroPago=$app->request->getJsonRawBody();
-    var_dump($registroPago);
+    //var_dump($registroPago);
     if(RegistroPago::updateRegistroPago($id, $registroPago)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(
@@ -154,7 +154,7 @@ $app->delete('/api/registropago/{id:[0-9]+}', function($id) use ($app){
    // RegistroPago::deleteRegistroPago($id);
   $response = new Response();
   $registroPago=$app->request->getJsonRawBody();
-    var_dump($registroPago);
+    //var_dump($registroPago);
     if(RegistroPago::deleteRegistroPago($id)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(

@@ -120,7 +120,7 @@ $app->post('/api/precioclase', function() use ($app){
 
 $app->put('/api/precioclase/{id:[0-9]+}', function($id) use ($app){
     $precioClase=$app->request->getJsonRawBody();
-    var_dump($precioClase);
+    //var_dump($precioClase);
     $response = new Response();
     if(PrecioClase::updatePrecioClase($id, $precioClase)){
         $response->setStatusCode(200, 'Succeed');

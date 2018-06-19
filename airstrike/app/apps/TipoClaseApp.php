@@ -90,7 +90,7 @@ $app->post('/api/tipoclase', function() use ($app){
   //  TipoClase::addTipoClase($tipoClase);
    $response = new Response();
   $tipoClase=$app->request->getJsonRawBody();
-    var_dump($tipoClase);
+    //var_dump($tipoClase);
     if( TipoClase::addTipoClase($tipoClase)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(
@@ -116,11 +116,11 @@ $app->post('/api/tipoclase', function() use ($app){
 
 $app->put('/api/tipoclase/{id:[0-9]+}', function($id) use ($app){
     $tipoClase=$app->request->getJsonRawBody();
-    var_dump($tipoClase);
+    //var_dump($tipoClase);
     //TipoClase::updateTipoClase($id, $tipoClase);
     $response = new Response();
   $tipoClase=$app->request->getJsonRawBody();
-    var_dump($tipoClase);
+    //var_dump($tipoClase);
     if(TipoClase::updateTipoClase($id, $tipoClase)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(
@@ -150,7 +150,7 @@ $app->delete('/api/tipoclase/{id:[0-9]+}', function($id) use ($app){
    // TipoClase::deleteTipoClase($id);
   $response = new Response();
   $tipoClase=$app->request->getJsonRawBody();
-    var_dump($tipoClase);
+    //var_dump($tipoClase);
     if(TipoClase::deleteTipoClase($id)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(

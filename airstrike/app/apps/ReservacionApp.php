@@ -96,7 +96,7 @@ $app->post('/api/reservacion', function() use ($app){
   //  Reservacion::addReservacion($reservacion);
    $response = new Response();
   $reservacion=$app->request->getJsonRawBody();
-    var_dump($reservacion);
+    //var_dump($reservacion);
     if( Reservacion::addReservacion($reservacion)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(
@@ -122,11 +122,11 @@ $app->post('/api/reservacion', function() use ($app){
 
 $app->put('/api/reservacion/{id:[0-9]+}', function($id) use ($app){
     $reservacion=$app->request->getJsonRawBody();
-    var_dump($reservacion);
+    //var_dump($reservacion);
    // Reservacion::updateReservacion($id, $reservacion);
     $response = new Response();
   $reservacion=$app->request->getJsonRawBody();
-    var_dump($reservacion);
+    //var_dump($reservacion);
     if(Reservacion::updateReservacion($id, $reservacion)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(
@@ -156,7 +156,7 @@ $app->delete('/api/reservacion/{id:[0-9]+}', function($id) use ($app){
 
   $response = new Response();
   $reservacion=$app->request->getJsonRawBody();
-    var_dump($reservacion);
+    //var_dump($reservacion);
     if( Reservacion::deleteReservacion($id)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(

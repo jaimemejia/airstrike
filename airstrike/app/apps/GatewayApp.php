@@ -98,7 +98,6 @@ $app->post('/api/gateway', function() use ($app)
 	
 	$response = new Response();
 	$gateway=$app->request->getJsonRawBody();
-    var_dump($gateway);
     if(Gateway::addGateway($gateway)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(
@@ -126,11 +125,10 @@ $app->post('/api/gateway', function() use ($app)
 $app->put('/api/gateway/{id:[0-9]+}', function($id) use ($app)
 {
 	$gateway=$app->request->getJsonRawBody();
-	var_dump($gateway);
 	//Gateway::updateGateway($id, $gateway);
 	$response = new Response();
 	$gateway=$app->request->getJsonRawBody();
-    var_dump($gateway);
+    //var_dump($gateway);
     if(Gateway::updateGateway($id, $gateway)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(
@@ -161,7 +159,7 @@ $app->delete('/api/gateway/{id:[0-9]+}', function($id) use ($app)
 	
 	$response = new Response();
 	$gateway=$app->request->getJsonRawBody();
-    var_dump($gateway);
+    //var_dump($gateway);
     if(Gateway::deleteGateway($id)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(

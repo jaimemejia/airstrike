@@ -216,7 +216,7 @@ $app->post('/api/programacion_vuelo', function() use ($app)
     //ProgramacionVuelo::addProgramacion($programacion_vuelo);
 	$response = new Response();
 	$programacion_vuelo=$app->request->getJsonRawBody();
-    var_dump($programacion_vuelo);
+    //var_dump($programacion_vuelo);
     if(ProgramacionVuelo::addProgramacion($programacion_vuelo)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(
@@ -244,12 +244,12 @@ $app->post('/api/programacion_vuelo', function() use ($app)
 $app->put('/api/programacion_vuelo/{id:[0-9]+}', function($id) use ($app)
 {
 	$programacion_vuelo=$app->request->getJsonRawBody();
-	var_dump($programacion_vuelo);
+	//var_dump($programacion_vuelo);
 	//ProgramacionVuelo::updateProgramacion($id, $programacion_vuelo);
 
 	$response = new Response();
 	$programacion_vuelo=$app->request->getJsonRawBody();
-    var_dump($programacion_vuelo);
+    //var_dump($programacion_vuelo);
     if(ProgramacionVuelo::updateProgramacion($id, $programacion_vuelo)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(
@@ -279,7 +279,7 @@ $app->delete('/api/programacion_vuelo/{id:[0-9]+}', function($id) use ($app)
 	//ProgramacionVuelo::deleteProgramacion($id);
 	$response = new Response();
 	$programacion_vuelo=$app->request->getJsonRawBody();
-    var_dump($programacion_vuelo);
+    //var_dump($programacion_vuelo);
     if(ProgramacionVuelo::deleteProgramacion($id)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(

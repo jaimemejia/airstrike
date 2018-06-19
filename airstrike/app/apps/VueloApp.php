@@ -104,7 +104,7 @@ $app->post('/api/vuelo', function() use ($app)
 	
 	$response = new Response();
 	$vuelo=$app->request->getJsonRawBody();
-    var_dump($vuelo);
+    //var_dump($vuelo);
     if(Vuelo::addVuelo($vuelo)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(
@@ -132,12 +132,12 @@ $app->post('/api/vuelo', function() use ($app)
 $app->put('/api/vuelo/{codigo:[a-zA-Z]+}', function($codigo) use ($app)
 {
 	$vuelo=$app->request->getJsonRawBody();
-	var_dump($vuelo);
+	//var_dump($vuelo);
 	//Vuelo::updateVuelo($codigo, $vuelo);
 	
 	$response = new Response();
 	$vuelo=$app->request->getJsonRawBody();
-    var_dump($vuelo);
+    //var_dump($vuelo);
     if(Vuelo::updateVuelo($codigo, $vuelo)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(
@@ -168,7 +168,7 @@ $app->delete('/api/vuelo/{codigo:[a-zA-Z]+}', function($codigo) use ($app)
 	
 	$response = new Response();
 	$vuelo=$app->request->getJsonRawBody();
-    var_dump($vuelo);
+    //var_dump($vuelo);
     if(Vuelo::deleteVuelo($codigo)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(

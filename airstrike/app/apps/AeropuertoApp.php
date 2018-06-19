@@ -103,7 +103,6 @@ $app->get('/api/aeropuerto/{codigo:[a-zA-Z]+}', function($codigo) use ($app)
 	
 	$response = new Response();
 	$aeropuerto=$app->request->getJsonRawBody();
-    var_dump($aeropuerto);
     if(Aeropuerto::addAeropuerto($aeropuerto)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(
@@ -131,12 +130,10 @@ $app->get('/api/aeropuerto/{codigo:[a-zA-Z]+}', function($codigo) use ($app)
 $app->put('/api/aeropuerto/{codigo:[a-zA-Z]+}', function($codigo) use ($app)
 {
 	$aeropuerto=$app->request->getJsonRawBody();
-	var_dump($aeropuerto);
 	//Aeropuerto::updateAeropuerto($codigo, $aeropuerto);
 	
 	$response = new Response();
 	$aeropuerto=$app->request->getJsonRawBody();
-    var_dump($aeropuerto);
     if(Aeropuerto::updateAeropuerto($codigo, $aeropuerto)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(
@@ -167,7 +164,6 @@ $app->delete('/api/aeropuerto/{codigo:[a-zA-Z]+}', function($codigo) use ($app)
 	
 	$response = new Response();
 	$aeropuerto=$app->request->getJsonRawBody();
-    var_dump($aeropuerto);
     if(Aeropuerto::deleteAeropuerto($codigo)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(

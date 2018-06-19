@@ -98,7 +98,7 @@ $app->post('/api/cempresa', function() use ($app){
    // CEmpresa::addCEmpresa($cempresa);
     $response = new Response();
     $cempresa=$app->request->getJsonRawBody();
-    var_dump($cempresa);
+    //var_dump($cempresa);
     if(CEmpresa::addCEmpresa($cempresa)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(
@@ -124,13 +124,13 @@ $app->post('/api/cempresa', function() use ($app){
 
 $app->put('/api/cempresa/{id:[0-9]+}', function($id) use ($app){
     $cempresa=$app->request->getJsonRawBody();
-    var_dump($cempresa);
+    //var_dump($cempresa);
     //CEmpresa::updateCEmpresa($id, $cempresa);
 
 
     $response = new Response();
     $cempresa=$app->request->getJsonRawBody();
-    var_dump($cempresa);
+    //var_dump($cempresa);
     if(CEmpresa::updateCEmpresa($id, $cempresa)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(
@@ -160,7 +160,7 @@ $app->delete('/api/cempresa/{id:[0-9]+}', function($id) use ($app){
 
     $response = new Response();
     $cempresa=$app->request->getJsonRawBody();
-    var_dump($cempresa);
+    //var_dump($cempresa);
     if(CEmpresa::deleteCEmpresa($id)){
         $response->setStatusCode(200, 'Succeed');
         $response->setJsonContent(
