@@ -86,8 +86,8 @@ class ProgramacionVuelo extends \Phalcon\Mvc\Model
     {
         return parent::findFirst($parameters);
     }
-	
-	
+
+
 	/*OBTENER TODAS LAS PROGRAMACIONES*/
 	public static function getAll()
     {
@@ -95,7 +95,7 @@ class ProgramacionVuelo extends \Phalcon\Mvc\Model
       $programacion_vuelo = new ProgramacionVuelo();
       return new Resultset(null, $programacion_vuelo, $programacion_vuelo->getReadConnection()->query($sql));
     }
-	
+
 	/*OBTENER PROGRAMACION POR ID*/
 	public static function getById($id)
     {
@@ -103,7 +103,7 @@ class ProgramacionVuelo extends \Phalcon\Mvc\Model
       $programacion_vuelo = new ProgramacionVuelo();
       return new Resultset(null, $programacion_vuelo, $programacion_vuelo->getReadConnection()->query($sql));
     }
-	
+
 	/*CREAR UNA NUEVA PROGRAMACION*/
 	public static function addProgramacion($programacion_vuelo)
     {
@@ -112,18 +112,32 @@ class ProgramacionVuelo extends \Phalcon\Mvc\Model
       return new Resultset(null, $programacion_vuelo, $programacion_vuelo->getReadConnection()->query($sql));
     }
 
-	/*ACTUALIZAR PROGRAMACION*/ 
+	/*ACTUALIZAR PROGRAMACION*/
 	public static function updateProgramacion($id,$programacion_vuelo)
 	{
 	  $sql = "SELECT * FROM update_programacion_vuelo('$id','$programacion_vuelo->avion_placa','$programacion_vuelo->gateway_id','$programacion_vuelo->fecha','$programacion_vuelo->vuelo_codigo')";
 	  $programacion_vuelo = new ProgramacionVuelo();
 	  return new Resultset(null, $programacion_vuelo, $programacion_vuelo->getReadConnection()->query($sql));
 	}
-	
+
 	/*ELIMINAR PROGRAMACION*/
 	public static function deleteProgramacion($id)
     {
       $sql = "SELECT * FROM delete_programacion_vuelo('$id')";
+      $programacion_vuelo = new ProgramacionVuelo();
+      return new Resultset(null, $programacion_vuelo, $programacion_vuelo->getReadConnection()->query($sql));
+    }
+
+    public static function getProgramacionVueloIda($vuelo_destino,$fecha_deseada)
+    {
+      $sql = "SELECT * FROM get_programacion_vuelo_ida($vuelo_destino,'$fecha_deseada')";
+      $programacion_vuelo = new ProgramacionVuelo();
+      return new Resultset(null, $programacion_vuelo, $programacion_vuelo->getReadConnection()->query($sql));
+    }
+
+    public static function getProgramacionVueloRegreso($vuelo_origen,$fecha_deseada)
+    {
+      $sql = "SELECT * FROM get_programacion_vuelo_regreso($vuelo_origen,'$fecha_deseada')";
       $programacion_vuelo = new ProgramacionVuelo();
       return new Resultset(null, $programacion_vuelo, $programacion_vuelo->getReadConnection()->query($sql));
     }
