@@ -58,6 +58,12 @@ $authConfig = [
             '/airstrike/airstrike/api/login',
             '/airstrike/api/login',
             '/backair/airstrike/api/login',
+            '/airstrike/airstrike/api/ciudad',
+            '/airstrike/api/ciudad',
+            '/backair/airstrike/api/ciudad',
+            '/airstrike/airstrike/api/pais',
+            '/airstrike/api/pais',
+            '/backair/airstrike/api/pais',
             ],
 ];
 
