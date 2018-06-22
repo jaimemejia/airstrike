@@ -97,7 +97,6 @@ class RegistroPago extends \Phalcon\Mvc\Model
         {
           $sql = "SELECT * FROM create_registro_pago(
             '$registroPago->precio',
-            '$registroPago->fecha',
             '$registroPago->reservacion_id')";
             $registroPago = new RegistroPago();
           return new Resultset(null, $registroPago, $registroPago->getReadConnection()->query($sql));

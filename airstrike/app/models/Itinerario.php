@@ -98,7 +98,7 @@ class Itinerario extends \Phalcon\Mvc\Model
 
     public static function addItinerario($itinerario)
     {
-      $sql = "SELECT * FROM create_itinerario('$itinerario->fecha_creacion','$itinerario->origen','$itinerario->destino')";
+      $sql = "SELECT * FROM create_itinerario('$itinerario->origen','$itinerario->destino')";
       $itinerario = new Itinerario();
       return new Resultset(null, $itinerario, $itinerario->getReadConnection()->query($sql));
     }
