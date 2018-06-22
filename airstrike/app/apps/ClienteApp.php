@@ -250,6 +250,59 @@ $app->delete('/api/cliente/{id:[0-9]+}', function($id) use ($app){
     $response->setHeader('Access-Control-Allow-Headers', 'X-Requested-With');
     return $response;
 });
+
+$app->get('/api/cliente_reservas/{id:[0-9]+}', function($id) use ($app){
+
+    $clientes = Cliente::getReservas($id);
+    $data = array();
+    foreach ($clientes as $cliente){
+      $data[]=array(
+        'id_cliente' => $cliente->id_cliente,
+        'id_registro_pago' => $cliente->id_registro_pago,
+        'fecha_pago' => $cliente->fecha_pago,
+        'precio_pagado' => $cliente->precio_pagado,
+        'id_reservacion' => $cliente->id_reservacion,
+        'asientos_reservados' => $cliente->asientos_reservados,
+        'cantidad_maletas' => $cliente->cantidad_maletas,
+        'id_itinerario' => $cliente->id_itinerario,
+        'fecha_itinerario' => $cliente->fecha_itinerario,
+        'pais_origen' => $cliente->pais_origen,
+        'ciudad_origen' => $cliente->ciudad_origen,
+        'pais_destino' => $cliente->pais_destino,
+        'ciudad_destino' => $cliente->ciudad_destino,
+      );
+    }
+
+    //echo json_encode($data,JSON_PRETTY_PRINT);
+    $response = new Response();
+
+      // Check if the insertion was successful
+      if ( sizeof($data) >0 ) {
+          // Change the HTTP status
+          $response->setStatusCode(200, 'Succeed');
+          $response->setJsonContent(
+              [
+                  'status' => 'OK',
+                  'data'   => $data,
+              ]
+          );
+      } else {
+          // Change the HTTP status
+          $response->setStatusCode(200, 'Succeed');
+
+          // Send errors to the client
+
+          $response->setJsonContent(
+              [
+                  'status'   => 'ERROR'
+              ]
+          );
+      }
+
+      $response->setHeader('Access-Control-Allow-Origin', '*');
+      $response->setHeader('Access-Control-Allow-Headers', 'X-Requested-With');
+      return $response;
+});
 /**
  *Fin de rutas para Cliente
  */
