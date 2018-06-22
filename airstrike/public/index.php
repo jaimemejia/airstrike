@@ -64,6 +64,8 @@ $authConfig = [
             '/airstrike/airstrike/api/pais',
             '/airstrike/api/pais',
             '/backair/airstrike/api/pais',
+            'regex:/backair/airstrike/api/programacion_vuelo/search:GET',
+            'regex:/airstrike/api/programacion_vuelo/search:GET',
             ],
 ];
 
