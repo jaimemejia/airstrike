@@ -124,4 +124,11 @@ class Usuario extends \Phalcon\Mvc\Model
       return new Resultset(null, $usuario, $usuario->getReadConnection()->query($sql));
     }
 
+    public static function getPermisos($id_usuario)
+    {
+      $sql = "SELECT * FROM get_permisos_usuario('$id_usuario')";
+      $usuario = new Usuario();
+      return new Resultset(null, $usuario, $usuario->getReadConnection()->query($sql));
+    }
+
 }

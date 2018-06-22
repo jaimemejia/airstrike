@@ -181,6 +181,47 @@ $app->delete('/api/usuario/{id:[0-9]+}', function($id) use ($app){
     return $response;
 });
 
+
+$app->get('/api/usuario_permisos/{id:[0-9]+}', function($id) use ($app){
+    $usuarios = Usuario::getPermisos($id);
+    $data = array();
+    foreach ($usuarios as $usuario){
+      $data[]=array(
+        'id_permiso' => $usuario->id,
+        'nombre_permiso' => $usuario->nombre,
+      );
+    }
+  //echo json_encode($data,JSON_PRETTY_PRINT);
+  $response = new Response();
+
+    // Check if the insertion was successful
+    if ( sizeof($data) >0 ) {
+        // Change the HTTP status
+        $response->setStatusCode(200, 'Succeed');
+        $response->setJsonContent(
+            [
+                'status' => 'OK',
+                'data'   => $data,
+            ]
+        );
+    } else {
+        // Change the HTTP status
+        $response->setStatusCode(200, 'Succeed');
+
+        // Send errors to the client
+
+        $response->setJsonContent(
+            [
+                'status'   => 'ERROR'
+            ]
+        );
+    }
+
+    $response->setHeader('Access-Control-Allow-Origin', '*');
+    $response->setHeader('Access-Control-Allow-Headers', 'X-Requested-With');
+    return $response;
+});
+
 /**
  *Fin de rutas para Usuario
  */

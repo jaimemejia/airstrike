@@ -13,8 +13,8 @@ $app->get('/api/lineaaerea', function() use ($app)
 		'nombre_oficial' => $lineaaerea->nombre_oficial,
 		'nombre_corto' => $lineaaerea->nombre_corto,
 		'representante' => $lineaaerea->representante,
-		'fecha_fundacion' => $lineaaerea->codigo,
-		'pais_codigo' => $lineaaerea->fecha_fundacion,
+		'fecha_fundacion' => $lineaaerea->fecha_fundacion,
+		'pais_codigo' => $lineaaerea->pais_codigo,
 		'correo_electronico' => $lineaaerea->correo_electronico,
 		'pagina_web' => $lineaaerea->pagina_web
 	  );
@@ -46,7 +46,7 @@ $app->get('/api/lineaaerea', function() use ($app)
     }
 
     $response->setHeader('Access-Control-Allow-Origin', '*');
-    $response->setHeader('Access-Control-Allow-Headers', 'X-Requested-With');   
+    $response->setHeader('Access-Control-Allow-Headers', 'X-Requested-With');
     return $response;
 });
 
@@ -63,8 +63,8 @@ $app->get('/api/lineaaerea/{codigo:[0-9]+}', function($codigo) use ($app)
 		'nombre_oficial' => $lineaaerea->nombre_oficial,
 		'nombre_corto' => $lineaaerea->nombre_corto,
 		'representante' => $lineaaerea->representante,
-		'fecha_fundacion' => $lineaaerea->codigo,
-		'pais_codigo' => $lineaaerea->fecha_fundacion,
+		'fecha_fundacion' => $lineaaerea->fecha_fundacion,
+		'pais_codigo' => $lineaaerea->pais_codigo,
 		'correo_electronico' => $lineaaerea->correo_electronico,
 		'pagina_web' => $lineaaerea->pagina_web
 	  );
@@ -96,7 +96,7 @@ $app->get('/api/lineaaerea/{codigo:[0-9]+}', function($codigo) use ($app)
     }
 
     $response->setHeader('Access-Control-Allow-Origin', '*');
-    $response->setHeader('Access-Control-Allow-Headers', 'X-Requested-With');   
+    $response->setHeader('Access-Control-Allow-Headers', 'X-Requested-With');
     return $response;
 });
 
@@ -127,7 +127,7 @@ $app->post('/api/lineaaerea', function() use ($app)
       );
     }
 	$response->setHeader('Access-Control-Allow-Origin', '*');
-    $response->setHeader('Access-Control-Allow-Headers', 'X-Requested-With');   
+    $response->setHeader('Access-Control-Allow-Headers', 'X-Requested-With');
     return $response;
 });
 
@@ -137,7 +137,7 @@ $app->put('/api/lineaaerea/{codigo:[0-9]+}', function($codigo) use ($app)
  $lineaaerea=$app->request->getJsonRawBody();
  //var_dump($lineaaerea);
  //LineaAerea::updateLineaAerea($codigo, $lineaaerea);
- 
+
  $response = new Response();
 	$lineaaerea=$app->request->getJsonRawBody();
     //var_dump($lineaaerea);
@@ -160,7 +160,7 @@ $app->put('/api/lineaaerea/{codigo:[0-9]+}', function($codigo) use ($app)
       );
     }
 	$response->setHeader('Access-Control-Allow-Origin', '*');
-    $response->setHeader('Access-Control-Allow-Headers', 'X-Requested-With');   
+    $response->setHeader('Access-Control-Allow-Headers', 'X-Requested-With');
     return $response;
 });
 
@@ -168,7 +168,7 @@ $app->put('/api/lineaaerea/{codigo:[0-9]+}', function($codigo) use ($app)
 $app->delete('/api/lineaaerea/{codigo:[0-9]+}', function($codigo) use ($app)
 {
 	//LineaAerea::deleteLineaAerea($codigo);
-	
+
 	$response = new Response();
 	$lineaaerea=$app->request->getJsonRawBody();
     //var_dump($lineaaerea);
@@ -191,6 +191,54 @@ $app->delete('/api/lineaaerea/{codigo:[0-9]+}', function($codigo) use ($app)
       );
     }
 	$response->setHeader('Access-Control-Allow-Origin', '*');
-    $response->setHeader('Access-Control-Allow-Headers', 'X-Requested-With');   
+    $response->setHeader('Access-Control-Allow-Headers', 'X-Requested-With');
+    return $response;
+});
+
+
+/*OBTENER LINEA AEREA POR CODIGO*/
+$app->get('/api/lineaaerea_vuelos/{codigo:[0-9]+}', function($codigo) use ($app)
+{
+	$lineasaereas = LineaAerea::getVuelos($codigo);
+	$data = array();
+	foreach ($lineasaereas as $lineaaerea)
+	{
+	  $data[]=array
+	  (
+		'codigo' => $lineaaerea->codigo,
+		'millas_reales' => $lineaaerea->millas_reales,
+		'millas_otorgadas' => $lineaaerea->millas_otorgadas,
+		'origen' => $lineaaerea->origen,
+		'destino' => $lineaaerea->destino,
+	  );
+	}
+	//echo json_encode($data,JSON_PRETTY_PRINT);
+	$response = new Response();
+
+    // Check if the insertion was successful
+    if ( sizeof($data) >0 ) {
+        // Change the HTTP status
+        $response->setStatusCode(200, 'Succeed');
+        $response->setJsonContent(
+            [
+                'status' => 'OK',
+                'data'   => $data,
+            ]
+        );
+    } else {
+        // Change the HTTP status
+        $response->setStatusCode(200, 'Succeed');
+
+        // Send errors to the client
+
+        $response->setJsonContent(
+            [
+                'status'   => 'ERROR'
+            ]
+        );
+    }
+
+    $response->setHeader('Access-Control-Allow-Origin', '*');
+    $response->setHeader('Access-Control-Allow-Headers', 'X-Requested-With');
     return $response;
 });

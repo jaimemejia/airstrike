@@ -108,7 +108,7 @@ class LineaAerea extends \Phalcon\Mvc\Model
     {
         return parent::findFirst($parameters);
     }
-	
+
 	/*OBTENER TODAS LAS LINEAS AEREAS*/
 	public static function getAll()
     {
@@ -116,7 +116,7 @@ class LineaAerea extends \Phalcon\Mvc\Model
       $lineaAerea = new LineaAerea();
       return new Resultset(null, $lineaAerea, $lineaAerea->getReadConnection()->query($sql));
     }
-	
+
 	/*OBTENER LINEA AEREA POR CODIGO*/
 	public static function getByCodigo($codigo)
     {
@@ -124,7 +124,7 @@ class LineaAerea extends \Phalcon\Mvc\Model
       $lineaAerea = new LineaAerea();
       return new Resultset(null, $lineaAerea, $lineaAerea->getReadConnection()->query($sql));
     }
-	
+
 	/*CREAR UNA NUEVA LINEA AEREA*/
 	public static function addLineaAerea($lineaAerea)
     {
@@ -133,14 +133,14 @@ class LineaAerea extends \Phalcon\Mvc\Model
       return new Resultset(null, $lineaAerea, $lineaAerea->getReadConnection()->query($sql));
     }
 
-	/*ACTUALIZAR LINEA AEREA*/ 
+	/*ACTUALIZAR LINEA AEREA*/
 	public static function updateLineaAerea($codigo,$lineaAerea)
 	{
 	  $sql = "SELECT * FROM update_linea_aerea('$codigo','$lineaAerea->nombre_oficial','$lineaAerea->nombre_corto','$lineaAerea->representante','$lineaAerea->fecha_fundacion','$lineaAerea->pais_codigo','$lineaAerea->correo_electronico','$lineaAerea->pagina_web')";
 	  $lineaAerea = new LineaAerea();
 	  return new Resultset(null, $lineaAerea, $lineaAerea->getReadConnection()->query($sql));
 	}
-	
+
 	/*ELIMINAR LINEA AEREA*/
 	public static function deleteLineaAerea($codigo)
     {
@@ -148,5 +148,12 @@ class LineaAerea extends \Phalcon\Mvc\Model
       $lineaAerea = new LineaAerea();
       return new Resultset(null, $lineaAerea, $lineaAerea->getReadConnection()->query($sql));
     }
+
+    public static function getVuelos($codigo)
+      {
+        $sql = "SELECT * FROM consulta_vuelos_disp('$codigo')";
+        $lineaAerea = new LineaAerea();
+        return new Resultset(null, $lineaAerea, $lineaAerea->getReadConnection()->query($sql));
+      }
 
 }
